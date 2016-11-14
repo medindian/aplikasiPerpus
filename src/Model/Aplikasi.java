@@ -109,7 +109,7 @@ public class Aplikasi {
     }
     
     //untuk melakukan peminjaman buku yang dilakukan oleh anggota perpus
-    public String PeminjamanBuku(String kodeAnggota, String kodeBuku){
+    public String PeminjamanBuku(String kodeAnggota, String kodeBuku, String kodePinjam, Date tglPinjam, Date batasPinjam){
         String statement = "ini statement";
         Anggota peminjam ;
         Buku cariBk ;
@@ -122,15 +122,17 @@ public class Aplikasi {
         } else {
             peminjam = (Anggota) listAnggota.get(cariArrayAnggotaByKode(kodeAnggota));
             cariBk = (Buku) listBuku.get(cariArrayBukuByKode(kodeBuku));
-//            peminjam.melakukanPeminjamanBuku(cariBk);
+            peminjam.melakukanPeminjamanBuku(cariBk, kodePinjam, tglPinjam, batasPinjam);
             statement = "Peminjaman berhasil dilakukan";
         }
         return statement;
     }
     
-    public String PengembalianBuku(String kodeAnggota, String kodePeminjaman){
-        String statement = "ini statement";
+    public String PengembalianBuku(String kodeAnggota, String kodePeminjaman, Date tglKembaliinBuku){
+        String statement = "Error";
         Anggota peminjam;
+        Pengembalian kegKembaliinBuku = new Pengembalian();
+        kegKembaliinBuku.setTglPengembalianBuku(tglKembaliinBuku);
         //Buku cariBk;
         boolean statAnggota = cariAnggotaByKode(kodeAnggota);
         //boolean statBuku = cariBukuByKode(kodeBuku);
@@ -138,10 +140,13 @@ public class Aplikasi {
             statement = "Anda belum terdaftar atau salah memasukkan kode anggota";
         } else {
             peminjam = (Anggota) listAnggota.get(cariArrayAnggotaByKode(kodeAnggota));
-            
+            boolean status = peminjam.melakukanPengembalian(kodePeminjaman, kegKembaliinBuku);
             //cariBk = (Buku) listBuku.get(cariArrayBukuByKode(kodeBuku));
             //peminjam.melakukanPeminjamanBuku(cariBk);
-            statement = "Peminjaman berhasil dilakukan";
+            if (status == false)
+                statement = "Data peminjaman tidak ada";
+            else
+                statement = "Data pengembalian buku berhasil dilakukan";
         }
         return statement;
     }

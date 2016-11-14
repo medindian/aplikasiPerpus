@@ -59,7 +59,8 @@ public class Anggota {
     
     public void melakukanPeminjamanBuku(Buku bukuYgDipinjam, String kodePeminjaman, Date tglPeminjaman, Date batasPeminjaman){
         Peminjaman kegPinjam = new Peminjaman(bukuYgDipinjam, kodePeminjaman, tglPeminjaman, batasPeminjaman);
-        this.listPeminjaman.add(kegPeminjaman);
+        this.listPeminjaman.add(kegPinjam);
+        System.out.println("Dokumentasi Peminjaman berhasil disimpan");
     }
     
     public int cariPeminjamanBuku(String kodePeminjaman){
@@ -71,8 +72,16 @@ public class Anggota {
         return arrKetemu;
     }
     
-    public void melakukanPengembalian(String kodePeminjaman, Pengembalian kegPengembalian){
-    
+    public boolean melakukanPengembalian(String kodePeminjaman, Pengembalian kegPengembalian){
+        int peminjamanKetemu = cariPeminjamanBuku(kodePeminjaman);
+        boolean stat = false;
+        //String statement = "Error";
+        if (peminjamanKetemu != -1){
+            listPeminjaman.get(peminjamanKetemu).pengembalianBuku(kegPengembalian);
+            stat = true;
+            //statement = "Dokumentasi pengembalian buku berhasil disimpan";
+        }
+        return stat;
     }
     
 }
