@@ -128,37 +128,28 @@ public class Aplikasi {
         return statement;
     }
     
+    //untuk melakukan pengembalian buku dengan cara mencari data anggota terlebih dahulu
+    //bila data anggota ada, maka dicari data peminjaman berdasarkan kode peminjaman
+                      //tidak ada, maka peminjaman bersifat tidak valid
+    //bila data peminjaman ada, maka pengembalian dapat dilakukan
+                          //tidak ada, maka pengembalian bersifat tidak valid
     public String PengembalianBuku(String kodeAnggota, String kodePeminjaman, Date tglKembaliinBuku){
         String statement = "Error";
         Anggota peminjam;
         Pengembalian kegKembaliinBuku = new Pengembalian();
         kegKembaliinBuku.setTglPengembalianBuku(tglKembaliinBuku);
-        //Buku cariBk;
         boolean statAnggota = cariAnggotaByKode(kodeAnggota);
-        //boolean statBuku = cariBukuByKode(kodeBuku);
         if (statAnggota == false){
             statement = "Anda belum terdaftar atau salah memasukkan kode anggota";
         } else {
             peminjam = (Anggota) listAnggota.get(cariArrayAnggotaByKode(kodeAnggota));
             boolean status = peminjam.melakukanPengembalian(kodePeminjaman, kegKembaliinBuku);
-            //cariBk = (Buku) listBuku.get(cariArrayBukuByKode(kodeBuku));
-            //peminjam.melakukanPeminjamanBuku(cariBk);
-            if (status == false)
-                statement = "Data peminjaman tidak ada";
-            else
+            if (status == true)
                 statement = "Data pengembalian buku berhasil dilakukan";
+            else
+                statement = "Data peminjaman tidak ada";
         }
         return statement;
     }
-    
-//        for (int i=0; i < listAnggota.size(); i++){
-//            cariAg = (Anggota) listAnggota.get(i);
-//            if (cariAg.getKodeAnggota() == kodeAnggota){
-//                for (int j = 0; j < listBuku.size(); j++){
-//                    
-//                }
-//            }
-//        }
-//    }
     
 }
