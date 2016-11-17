@@ -1,51 +1,79 @@
 package Model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Pengembalian {
     
-    private Date tglPengembalian;
-    private int banyakHariPinjam = 0;
+    private String tglPengembalian;
+    private long banyakHariPinjam = 0;
     private Denda denda;
     
-    public Date getTglPengembalian() {
+    public String getTglPengembalian() {
         return tglPengembalian; }
-
-    public Denda getDenda() {
-        return denda;   }
     
-    public void setTglPengembalian(Date tglPengembalian) {
+    public void setTglPengembalian(String tglPengembalian) {
         this.tglPengembalian = tglPengembalian; }
     
-    public void kalkulatorPenghitungHari(Date tglPeminjaman, Date tglPengembalian){
-        int banyakHari = 0;
-        //hitung banyaknya hari peminjam meminjam buku
-        this.banyakHariPinjam = banyakHari;
+    public void kalkulatorPenghitungHari(String tglPeminjaman){
+        //HH converts hour in 24 hours format (0-23), day calculation
+	SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+	Date d1 = null;
+	Date d2 = null;
+
+	try {
+            d1 = format.parse(tglPeminjaman);
+            d2 = format.parse(this.tglPengembalian);
+            //untuk testing
+//            System.out.println("d1 = "+d1);
+//            System.out.println("d2 = "+d2);
+            
+            //in milliseconds
+            long diff = d2.getTime() - d1.getTime();
+            long diffHours = diff / (60 * 60 * 1000) % 24;
+            long diffDays = diff / (24 * 60 * 60 * 1000);
+            
+            if (diffHours > 0){
+                diffDays = diffDays+1;  }
+            //testing
+//            System.out.print(diffDays + " days, ");
+//            System.out.print(diffHours + " hours, ");
+
+            this.banyakHariPinjam = diffDays;
+	} catch (Exception e) {
+            e.printStackTrace();    }
     }
 
-    public int getBanyakHariPinjam() {
-        return banyakHariPinjam;    }
-
+    public long getBanyakHariPinjam() {
+        return this.banyakHariPinjam;    }
+    
     public boolean isBayarDenda() {
-        if (banyakHariPinjam <= 7){
+        if (this.banyakHariPinjam <= 7){
             return true;
         }
         return false;
     }
     
-    public int perhitunganDenda(){
-        this.denda = new Denda(getBanyakHariPinjam()-7);
-        denda.setTotalDenda(denda.hitungDenda());
-        return denda.getTotalDenda();
+    public Denda getDenda() {
+        return denda;   }
+    
+    public void melakukanPengembalianBuku(String tglPinjamBuku, String tglKembaliinBuku){
+        setTglPengembalian(tglKembaliinBuku);
+        kalkulatorPenghitungHari(tglPinjamBuku);
+        this.denda = new Denda();
+        if (isBayarDenda() == true){
+            this.denda.setBanyakKeterlambatan(this.banyakHariPinjam);
+            long dendaYgHrsDibayar = this.denda.hitungTotalDenda();
+            this.denda.setTotalDenda(dendaYgHrsDibayar);
+        }
     }
     
-    public boolean pembayaranDenda(int bayar){
-        denda.setTotalDenda(denda.getTotalDenda()-bayar);
-        //boolean stat = false;
+    public boolean pembayaranDenda(long bayar){
+        long dendaYgHrsDibayar = this.denda.hitungTotalDenda();
+        denda.setTotalDenda(dendaYgHrsDibayar-bayar);
         if (denda.getTotalDenda() == 0)
-            return true;
             //System.out.println("Denda sudah lunas");
-            //stat = true;
+            return true;
         //else System.out.println("Denda belum lunas");
         return false;
     }

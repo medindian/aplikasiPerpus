@@ -8,9 +8,6 @@ public class TubesImpal {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Date date = new Date();
-        System.out.println("Date : "+date);
-        
         String dateStart = "01/14/2012 09:29:58";
 	String dateStop = "01/15/2012 10:31:48";
 
@@ -30,15 +27,15 @@ public class TubesImpal {
             //in milliseconds
             long diff = d2.getTime() - d1.getTime();
 
-            long diffSeconds = diff / 1000 % 60;
-            long diffMinutes = diff / (60 * 1000) % 60;
+//            long diffSeconds = diff / 1000 % 60;
+//            long diffMinutes = diff / (60 * 1000) % 60;
             long diffHours = diff / (60 * 60 * 1000) % 24;
             long diffDays = diff / (24 * 60 * 60 * 1000);
 
             System.out.print(diffDays + " days, ");
             System.out.print(diffHours + " hours, ");
-            System.out.print(diffMinutes + " minutes, ");
-            System.out.print(diffSeconds + " seconds.");
+//            System.out.print(diffMinutes + " minutes");
+//            System.out.print(diffSeconds + " seconds.");
 
 	} catch (Exception e) {
             e.printStackTrace();    }

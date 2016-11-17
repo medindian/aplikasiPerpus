@@ -58,8 +58,8 @@ public class Anggota {
 
     
     public void melakukanPeminjamanBuku(Buku bukuYgDipinjam, String kodePeminjaman, Date tglPeminjaman, Date batasPeminjaman){
-        Peminjaman kegPinjam = new Peminjaman(bukuYgDipinjam, kodePeminjaman, tglPeminjaman, batasPeminjaman);
-        this.listPeminjaman.add(kegPinjam);
+//        Peminjaman kegPinjam = new Peminjaman(bukuYgDipinjam, kodePeminjaman, tglPeminjaman, batasPeminjaman);
+//        this.listPeminjaman.add(kegPinjam);
         System.out.println("Dokumentasi Peminjaman berhasil disimpan");
     }
     
@@ -72,12 +72,12 @@ public class Anggota {
         return arrKetemu;
     }
     
-    public boolean melakukanPengembalian(String kodePeminjaman, Pengembalian kegPengembalian){
+    public boolean melakukanPengembalian(String kodePeminjaman, String tglKembali){
         int peminjamanKetemu = cariPeminjamanBuku(kodePeminjaman);
         boolean stat = false;
         //String statement = "Error";
         if (peminjamanKetemu != -1){
-            listPeminjaman.get(peminjamanKetemu).pengembalianBuku(kegPengembalian);
+//            listPeminjaman.get(peminjamanKetemu).pengembalianBuku(kegPengembalian);
             stat = true;
             //statement = "Dokumentasi pengembalian buku berhasil disimpan";
         }

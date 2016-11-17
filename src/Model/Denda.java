@@ -2,19 +2,21 @@ package Model;
 
 public class Denda {
     
-    private int banyakKeterlambatan;
-    private int totalDenda = 0;
+    private long banyakKeterlambatan = 0;
+    private long totalDenda = 0;
 
-    public Denda(int banyakKeterlambatan) {
-        this.banyakKeterlambatan = banyakKeterlambatan; }
+    public void setBanyakKeterlambatan(long banyakHari) {
+        this.banyakKeterlambatan = banyakHari-7; }
     
-    public int hitungDenda(){ //setDenda
-        return banyakKeterlambatan * 1000;    }
+    public long getBanyakKeterlambatan(){
+        return this.banyakKeterlambatan;    }
+    
+    public void setTotalDenda(long dendaTerhitung){
+        this.totalDenda = dendaTerhitung;    }
 
-    public void setTotalDenda(int totalDenda) {
-        this.totalDenda = totalDenda;   }
-
-    public int getTotalDenda() {
-        return totalDenda;  }
-       
+    public long getTotalDenda() {
+        return this.totalDenda;  }
+    
+    public long hitungTotalDenda(){
+        return banyakKeterlambatan*1000;    }
 }

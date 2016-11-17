@@ -6,20 +6,20 @@ import java.util.Date;
 public class Peminjaman {
     
     //1 peminjaman = 1 pengembalian = 1 buku
-    //private ArrayList pinjamBuku = new ArrayList<Buku>();
     private String kodePeminjaman;
     private Buku pinjamBuku;
-    private Date tglPeminjaman, batasPeminjaman;
+    private String tglPeminjaman, batasPeminjaman;
     private Pengembalian pengembalianBuku;
-    private int dendaYgHarusDibayar = 0;
+//    private int dendaYgHarusDibayar = 0;
 
-    public Peminjaman(Buku bukuYgDipinjam, String kodePeminjaman, Date tglPeminjaman, Date batasPeminjaman) {
+    public Peminjaman(Buku bukuYgDipinjam, String kodePeminjaman, String tglPeminjaman, String batasPeminjaman) {
         this.pinjamBuku = bukuYgDipinjam;
         this.kodePeminjaman = kodePeminjaman;
         this.tglPeminjaman = tglPeminjaman;
         this.batasPeminjaman = batasPeminjaman;
         this.pengembalianBuku = new Pengembalian();
     }
+    
 
     public String getKodePeminjaman() {
         return kodePeminjaman;  }
@@ -27,37 +27,38 @@ public class Peminjaman {
     public void setKodePeminjaman(String kodePeminjaman) {
         this.kodePeminjaman = kodePeminjaman;   }
 
-    public Date getTglPeminjaman() {
+    public String getTglPeminjaman() {
         return tglPeminjaman;   }
 
-    public void setTglPeminjaman(Date tglPeminjaman) {
+    public void setTglPeminjaman(String tglPeminjaman) {
         this.tglPeminjaman = tglPeminjaman; }
 
-    public Date getBatasPeminjaman() {
+    public String getBatasPeminjaman() {
         return batasPeminjaman; }
 
-    public void setBatasPeminjaman(Date batasPeminjaman) {
+    public void setBatasPeminjaman(String batasPeminjaman) {
         this.batasPeminjaman = batasPeminjaman; }
     
-    public void ubahPeminjaman(Date tglPinjam, Date batasPinjam){
+    public void ubahPeminjaman(String tglPinjam, String batasPinjam){
         setTglPeminjaman(tglPinjam);
         setBatasPeminjaman(batasPinjam);
     }
     
-    public void pengembalianBuku(Pengembalian pengembalian){
-        this.pengembalianBuku.setTglPengembalian(pengembalian.getTglPengembalian());
+    public void pengembalianBuku(String tglKembaliinBuku){
+        this.pengembalianBuku.melakukanPengembalianBuku(getTglPeminjaman(), tglKembaliinBuku);
         boolean checkDenda = this.pengembalianBuku.isBayarDenda(); 
         if (checkDenda == true){
-            System.out.println("Anda harus bayar denda dan tidak bisa melakukan perpanjangan buku");
-            dendaYgHarusDibayar = this.pengembalianBuku.perhitunganDenda();
+            long jmlDenda = this.pengembalianBuku.getDenda().getTotalDenda();
+            System.out.println("Anda tidak dapat melakukan perpanjangan buku dan "+
+                    "harus membayar denda sebanyak Rp "+jmlDenda);
         } else
-            System.out.println("Anda tidak mendapat denda");
+            System.out.println("Terima kasih sudah mengembalikan buku tepat waktu!");
     }
     
     public void bayarDenda(int dendaYgDibayar){
         this.pengembalianBuku.pembayaranDenda(dendaYgDibayar);
         if (this.pengembalianBuku.isDendaLunas() == false)
-            System.out.println("Anda masih harus membayar hutang sebesar RPp."
+            System.out.println("Anda masih harus membayar hutang sebesar Rp "
                     + this.pengembalianBuku.getDenda().getTotalDenda());
     }
     

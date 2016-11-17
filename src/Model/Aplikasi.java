@@ -143,11 +143,11 @@ public class Aplikasi {
             statement = "Anda belum terdaftar atau salah memasukkan kode anggota";
         } else {
             peminjam = (Anggota) listAnggota.get(cariArrayAnggotaByKode(kodeAnggota));
-            boolean status = peminjam.melakukanPengembalian(kodePeminjaman, kegKembaliinBuku);
-            if (status == true)
-                statement = "Data pengembalian buku berhasil dilakukan";
-            else
-                statement = "Data peminjaman tidak ada";
+//            boolean status = peminjam.melakukanPengembalian(kodePeminjaman, kegKembaliinBuku);
+//            if (status == true)
+//                statement = "Data pengembalian buku berhasil dilakukan";
+//            else
+//                statement = "Data peminjaman tidak ada";
         }
         return statement;
     }
