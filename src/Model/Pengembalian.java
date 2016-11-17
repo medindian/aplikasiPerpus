@@ -10,14 +10,14 @@ public class Pengembalian {
 
 //    public Pengembalian(Date tglPengembalian) {
 //        this.tglPengembalian = tglPengembalian; }
-
+    
     public Date getTglPengembalian() {
         return tglPengembalian; }
 
     public Denda getDenda() {
         return denda;   }
     
-    public void setTglPengembalianBuku(Date tglPengembalian){
+    public void ubahTglPengembalianBuku(Date tglPengembalian){
         this.tglPengembalian = tglPengembalian; }
     
     public void kalkulatorPenghitungHari(Date tglPeminjaman, Date tglPengembalian){

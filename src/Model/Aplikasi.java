@@ -137,7 +137,7 @@ public class Aplikasi {
         String statement = "Error";
         Anggota peminjam;
         Pengembalian kegKembaliinBuku = new Pengembalian();
-        kegKembaliinBuku.setTglPengembalianBuku(tglKembaliinBuku);
+//        kegKembaliinBuku.setTglPengembalianBuku(tglKembaliinBuku);
         boolean statAnggota = cariAnggotaByKode(kodeAnggota);
         if (statAnggota == false){
             statement = "Anda belum terdaftar atau salah memasukkan kode anggota";

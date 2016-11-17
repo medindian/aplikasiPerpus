@@ -25,8 +25,8 @@ public class Peminjaman {
     public String getKodePeminjaman() {
         return kodePeminjaman;  }
 
-//    public void setKodePeminjaman(String kodePeminjaman) {
-//        this.kodePeminjaman = kodePeminjaman;   }
+    public void setKodePeminjaman(String kodePeminjaman) {
+        this.kodePeminjaman = kodePeminjaman;   }
 
     public Date getTglPeminjaman() {
         return tglPeminjaman;   }
@@ -50,7 +50,7 @@ public class Peminjaman {
     
     public void pengembalianBuku(Pengembalian pengembalian){
         //this.pengembalianBuku = pengembalian;
-        this.pengembalianBuku.setTglPengembalianBuku(pengembalian.getTglPengembalian());
+//        this.pengembalianBuku.setTglPengembalianBuku(pengembalian.getTglPengembalian());
         boolean checkDenda = this.pengembalianBuku.isBayarDenda(); 
         if (checkDenda == true){
             System.out.println("Anda harus bayar denda dan tidak bisa melakukan perpanjangan buku");
