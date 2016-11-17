@@ -15,7 +15,13 @@ public class Anggota {
         this.noTelp = noTelp;
         this.email = email;
         this.listPeminjaman = new ArrayList<>();
-    //    this.username = username;
+        setKodeAnggota(kode);
+    }
+    
+    public String getKodeAnggota() {
+        return kodeAnggota; }
+
+    public void setKodeAnggota(int kode){
         if (kode < 10){
             this.kodeAnggota = "MEMBER-000"+ Integer.toString(kode);   }
         else if (kode < 100){
@@ -25,7 +31,7 @@ public class Anggota {
         else 
             this.kodeAnggota = "MEMBER-00"+ Integer.toString(kode);
     }
-
+    
     public String getNama() {
         return nama;    }
 
@@ -50,34 +56,32 @@ public class Anggota {
     public void setEmail(String email) {
         this.email = email; }
 
-    public String getKodeAnggota() {
-        return kodeAnggota; }
-
     public ArrayList getListPeminjaman() {
         return listPeminjaman;  }
 
     
-    public void melakukanPeminjamanBuku(Buku bukuYgDipinjam, String kodePeminjaman, Date tglPeminjaman, Date batasPeminjaman){
+    //public void melakukanPeminjamanBuku(Buku bukuYgDipinjam, String kodePeminjaman, Date tglPeminjaman, Date batasPeminjaman){
+    public void melakukanPeminjamanBuku(Peminjaman pinjam){
 //        Peminjaman kegPinjam = new Peminjaman(bukuYgDipinjam, kodePeminjaman, tglPeminjaman, batasPeminjaman);
-//        this.listPeminjaman.add(kegPinjam);
+        this.listPeminjaman.add(pinjam);
         System.out.println("Dokumentasi Peminjaman berhasil disimpan");
     }
     
-    public int cariPeminjamanBuku(String kodePeminjaman){
+    public int cariPeminjaman(String kodePeminjaman){
         int arrKetemu = -1;
         for (int i=0; i < listPeminjaman.size(); i++){
-            if (listPeminjaman.get(i).getKodePeminjaman() == kodePeminjaman){
+            if (listPeminjaman.get(i).getKodePeminjaman().equals(kodePeminjaman)){
                 arrKetemu =  i; }
         }
         return arrKetemu;
     }
     
-    public boolean melakukanPengembalian(String kodePeminjaman, String tglKembali){
-        int peminjamanKetemu = cariPeminjamanBuku(kodePeminjaman);
+    public boolean melakukanPengembalian(String kodePeminjaman, Date tglKembali){
+        int ketemu = cariPeminjaman(kodePeminjaman);
         boolean stat = false;
         //String statement = "Error";
-        if (peminjamanKetemu != -1){
-//            listPeminjaman.get(peminjamanKetemu).pengembalianBuku(kegPengembalian);
+        if (ketemu != -1){
+            listPeminjaman.get(ketemu).pengembalianBuku(tglKembali);
             stat = true;
             //statement = "Dokumentasi pengembalian buku berhasil disimpan";
         }

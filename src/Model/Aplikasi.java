@@ -16,7 +16,8 @@ public class Aplikasi {
         this.listBuku = new ArrayList<Buku>();
     }
     
-    //untuk melakukan pendaftaran anggota baru
+    //untuk melakukan pendaftaran anggota baru, maka harus melewati objek pendaftaran
+    // yg akan membuat objek anggota
     public void tambahAnggota(String nama, String alamat, String noTelp, String email){
         this.kode = kode+1;
         pendaftaran.daftarAnggotaBaru(nama, alamat, noTelp, email, this.kode);
@@ -109,7 +110,7 @@ public class Aplikasi {
     }
     
     //untuk melakukan peminjaman buku yang dilakukan oleh anggota perpus
-    public String PeminjamanBuku(String kodeAnggota, String kodeBuku, String kodePinjam, Date tglPinjam, Date batasPinjam){
+    public String PeminjamanBuku(String kodeAnggota, String kodeBuku, String kodePinjam, String tglPinjam, String batasPinjam){
         String statement = "ini statement";
         Anggota peminjam ;
         Buku cariBk ;
@@ -122,7 +123,7 @@ public class Aplikasi {
         } else {
             peminjam = (Anggota) listAnggota.get(cariArrayAnggotaByKode(kodeAnggota));
             cariBk = (Buku) listBuku.get(cariArrayBukuByKode(kodeBuku));
-            peminjam.melakukanPeminjamanBuku(cariBk, kodePinjam, tglPinjam, batasPinjam);
+            peminjam.melakukanPeminjamanBuku(new Peminjaman(cariBk, kodePinjam, tglPinjam, batasPinjam));
             statement = "Peminjaman berhasil dilakukan";
         }
         return statement;

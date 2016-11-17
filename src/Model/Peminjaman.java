@@ -7,16 +7,16 @@ public class Peminjaman {
     
     //1 peminjaman = 1 pengembalian = 1 buku
     private String kodePeminjaman;
-    private Buku pinjamBuku;
+    private Buku buku;
     private String tglPeminjaman, batasPinjam;
-    private Pengembalian pengembalianBuku;
+    private Pengembalian pengembalian;
 
-    public Peminjaman(Buku bukuYgDipinjam, String kodePeminjaman, String tglPeminjaman, String batasPeminjaman) {
-        this.pinjamBuku = bukuYgDipinjam;
+    Peminjaman(Buku bukuYgDipinjam, String kodePeminjaman, String tglPeminjaman, String batasPeminjaman) {
+        this.buku = bukuYgDipinjam;
         this.kodePeminjaman = kodePeminjaman;
         this.tglPeminjaman = tglPeminjaman;
         this.batasPinjam = batasPeminjaman;
-        this.pengembalianBuku = new Pengembalian();
+        this.pengembalian = new Pengembalian();
     }
     
     public String getKodePeminjaman() {
@@ -43,11 +43,11 @@ public class Peminjaman {
         setBatasPinjam(batasPinjam);
     }
     
-    public void pengembalianBuku(String tglKembaliinBuku){
-        this.pengembalianBuku.melakukanPengembalianBuku(getTglPeminjaman(), tglKembaliinBuku);
-        boolean checkDenda = this.pengembalianBuku.isBayarDenda(); 
+    public void pengembalianBuku(Date tglKembaliinBuku){
+        this.pengembalian.melakukanPengembalianBuku(getTglPeminjaman(), tglKembaliinBuku);
+        boolean checkDenda = this.pengembalian.isBayarDenda(); 
         if (checkDenda == true){
-            long jmlDenda = this.pengembalianBuku.getDenda().getTotalDenda();
+            long jmlDenda = this.pengembalian.getDenda().getTotalDenda();
             System.out.println("Anda tidak dapat melakukan perpanjangan buku dan "+
                     "harus membayar denda sebanyak Rp "+jmlDenda);
         } else
@@ -55,10 +55,10 @@ public class Peminjaman {
     }
     
     public void bayarDenda(int dendaYgDibayar){
-        this.pengembalianBuku.pembayaranDenda(dendaYgDibayar);
-        if (this.pengembalianBuku.isDendaLunas() == false)
+        this.pengembalian.pembayaranDenda(dendaYgDibayar);
+        if (this.pengembalian.isDendaLunas() == false)
             System.out.println("Anda masih harus membayar hutang sebesar Rp "
-                    + this.pengembalianBuku.getDenda().getTotalDenda());
+                    + this.pengembalian.getDenda().getTotalDenda());
     }
         
 }

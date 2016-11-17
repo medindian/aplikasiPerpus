@@ -12,8 +12,8 @@ public class Pengembalian {
     public String getTglPengembalian() {
         return tglPengembalian; }
     
-    public void setTglPengembalian(String tglPengembalian) {
-        this.tglPengembalian = tglPengembalian; }
+    public void setTglPengembalian(Date tglPengembalian) {
+        this.tglPengembalian = tglPengembalian.toString(); }
     
     public void kalkulatorPenghitungHari(String tglPeminjaman){
         //HH converts hour in 24 hours format (0-23), day calculation
@@ -57,7 +57,9 @@ public class Pengembalian {
     public Denda getDenda() {
         return denda;   }
     
-    public void melakukanPengembalianBuku(String tglPinjamBuku, String tglKembaliinBuku){
+    //karena pembuatan objek pengembalian dilakukan oleh objek peminjaman, 
+        //maka dilakukan setting tgl pengembalian
+    public void melakukanPengembalianBuku(String tglPinjamBuku, Date tglKembaliinBuku){
         setTglPengembalian(tglKembaliinBuku);
         kalkulatorPenghitungHari(tglPinjamBuku);
         this.denda = new Denda();
