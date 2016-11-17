@@ -68,14 +68,9 @@ public class Pengembalian {
         }
     }
     
-    public boolean pembayaranDenda(long bayar){
+    public void pembayaranDenda(long bayar){
         long dendaYgHrsDibayar = this.denda.hitungTotalDenda();
         denda.setTotalDenda(dendaYgHrsDibayar-bayar);
-        if (denda.getTotalDenda() == 0)
-            //System.out.println("Denda sudah lunas");
-            return true;
-        //else System.out.println("Denda belum lunas");
-        return false;
     }
     
     public boolean isDendaLunas(){

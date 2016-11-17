@@ -8,19 +8,17 @@ public class Peminjaman {
     //1 peminjaman = 1 pengembalian = 1 buku
     private String kodePeminjaman;
     private Buku pinjamBuku;
-    private String tglPeminjaman, batasPeminjaman;
+    private String tglPeminjaman, batasPinjam;
     private Pengembalian pengembalianBuku;
-//    private int dendaYgHarusDibayar = 0;
 
     public Peminjaman(Buku bukuYgDipinjam, String kodePeminjaman, String tglPeminjaman, String batasPeminjaman) {
         this.pinjamBuku = bukuYgDipinjam;
         this.kodePeminjaman = kodePeminjaman;
         this.tglPeminjaman = tglPeminjaman;
-        this.batasPeminjaman = batasPeminjaman;
+        this.batasPinjam = batasPeminjaman;
         this.pengembalianBuku = new Pengembalian();
     }
     
-
     public String getKodePeminjaman() {
         return kodePeminjaman;  }
 
@@ -33,15 +31,16 @@ public class Peminjaman {
     public void setTglPeminjaman(String tglPeminjaman) {
         this.tglPeminjaman = tglPeminjaman; }
 
-    public String getBatasPeminjaman() {
-        return batasPeminjaman; }
+    //batasPeminjaman = 7 hari setelah tglPinjam
+    public String getBatasPinjam() {
+        return batasPinjam; }
 
-    public void setBatasPeminjaman(String batasPeminjaman) {
-        this.batasPeminjaman = batasPeminjaman; }
+    public void setBatasPinjam(String batasPeminjaman) {
+        this.batasPinjam = batasPeminjaman; }
     
     public void ubahPeminjaman(String tglPinjam, String batasPinjam){
         setTglPeminjaman(tglPinjam);
-        setBatasPeminjaman(batasPinjam);
+        setBatasPinjam(batasPinjam);
     }
     
     public void pengembalianBuku(String tglKembaliinBuku){
@@ -61,12 +60,5 @@ public class Peminjaman {
             System.out.println("Anda masih harus membayar hutang sebesar Rp "
                     + this.pengembalianBuku.getDenda().getTotalDenda());
     }
-    
-//    public int jumlahPinjamBuku(){
-//        int jmlBuku = 0;
-//        for (int i=0; i < pinjamBuku.size(); i++){
-//            jmlBuku = jmlBuku + 1;
-//        }
-//        return jmlBuku; }
-    
+        
 }
