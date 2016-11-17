@@ -12,7 +12,6 @@ public class Peminjaman {
     private Date tglPeminjaman, batasPeminjaman;
     private Pengembalian pengembalianBuku;
     private int dendaYgHarusDibayar = 0;
-    private int nPeminjaman; //what for?
 
     public Peminjaman(Buku bukuYgDipinjam, String kodePeminjaman, Date tglPeminjaman, Date batasPeminjaman) {
         this.pinjamBuku = bukuYgDipinjam;
@@ -40,21 +39,16 @@ public class Peminjaman {
     public void setBatasPeminjaman(Date batasPeminjaman) {
         this.batasPeminjaman = batasPeminjaman; }
     
-//    public void tambahPeminjaman(Buku bukuDipinjam){
-//        pinjamBuku.add(bukuDipinjam);   }
-    
     public void ubahPeminjaman(Date tglPinjam, Date batasPinjam){
         setTglPeminjaman(tglPinjam);
         setBatasPeminjaman(batasPinjam);
     }
     
     public void pengembalianBuku(Pengembalian pengembalian){
-        //this.pengembalianBuku = pengembalian;
-//        this.pengembalianBuku.setTglPengembalianBuku(pengembalian.getTglPengembalian());
+        this.pengembalianBuku.setTglPengembalian(pengembalian.getTglPengembalian());
         boolean checkDenda = this.pengembalianBuku.isBayarDenda(); 
         if (checkDenda == true){
             System.out.println("Anda harus bayar denda dan tidak bisa melakukan perpanjangan buku");
-            //
             dendaYgHarusDibayar = this.pengembalianBuku.perhitunganDenda();
         } else
             System.out.println("Anda tidak mendapat denda");

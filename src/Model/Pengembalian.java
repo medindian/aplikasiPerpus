@@ -7,9 +7,6 @@ public class Pengembalian {
     private Date tglPengembalian;
     private int banyakHariPinjam = 0;
     private Denda denda;
-
-//    public Pengembalian(Date tglPengembalian) {
-//        this.tglPengembalian = tglPengembalian; }
     
     public Date getTglPengembalian() {
         return tglPengembalian; }
@@ -17,7 +14,7 @@ public class Pengembalian {
     public Denda getDenda() {
         return denda;   }
     
-    public void ubahTglPengembalianBuku(Date tglPengembalian){
+    public void setTglPengembalian(Date tglPengembalian) {
         this.tglPengembalian = tglPengembalian; }
     
     public void kalkulatorPenghitungHari(Date tglPeminjaman, Date tglPengembalian){
