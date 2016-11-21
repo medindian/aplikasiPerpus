@@ -5,8 +5,9 @@ public class Denda {
     private long banyakKeterlambatan = 0;
     private long totalDenda = 0;
 
-    public void setBanyakKeterlambatan(long banyakHari) {
-        this.banyakKeterlambatan = banyakHari-7; }
+    //menghitung banyaknya hari pinjam - 7 hari
+    public void setBanyakKeterlambatan(long banyakHariPinjam) {
+        this.banyakKeterlambatan = banyakHariPinjam-7; }
     
     public long getBanyakKeterlambatan(){
         return this.banyakKeterlambatan;    }

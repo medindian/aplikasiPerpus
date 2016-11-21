@@ -1,7 +1,11 @@
 package Model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Peminjaman {
     
@@ -9,15 +13,35 @@ public class Peminjaman {
     private String kodePeminjaman;
     private Buku buku;
     private String tglPeminjaman, batasPinjam;
+//    private Date tglPinjam, deadlinePinjam;
     private Pengembalian pengembalian;
 
-    Peminjaman(Buku bukuYgDipinjam, String kodePeminjaman, String tglPeminjaman, String batasPeminjaman) {
+    Peminjaman(Buku bukuYgDipinjam, String kodePeminjaman, Date tglPeminjaman, String batasPeminjaman) {
         this.buku = bukuYgDipinjam;
         this.kodePeminjaman = kodePeminjaman;
-        this.tglPeminjaman = tglPeminjaman;
+        this.tglPeminjaman = convertDateToString(tglPeminjaman);
         this.batasPinjam = batasPeminjaman;
         this.pengembalian = new Pengembalian();
     }
+    
+    public String convertDateToString(Date tglBaru){
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        String tgl = tglBaru.toString();
+        Date d = null;
+        try {
+            d = format.parse(tgl);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return d.toString();
+    }
+    
+   public Date hitungBatasPeminjaman(Date tglPinjam){
+       tglPinjam.getDay();
+       tglPinjam.getMonth();
+       tglPinjam.getYear();
+       return tglPinjam;
+   }
     
     public String getKodePeminjaman() {
         return kodePeminjaman;  }
@@ -28,23 +52,38 @@ public class Peminjaman {
     public String getTglPeminjaman() {
         return tglPeminjaman;   }
 
-    public void setTglPeminjaman(String tglPeminjaman) {
-        this.tglPeminjaman = tglPeminjaman; }
+    public void setTglPeminjaman(Date tglPeminjaman) {
+        this.tglPeminjaman = convertDateToString(tglPeminjaman); }
 
     //batasPeminjaman = 7 hari setelah tglPinjam
     public String getBatasPinjam() {
         return batasPinjam; }
 
-    public void setBatasPinjam(String batasPeminjaman) {
-        this.batasPinjam = batasPeminjaman; }
-    
-    public void ubahPeminjaman(String tglPinjam, String batasPinjam){
+    public void setBatasPinjam(Date batasPinjam) {
+        this.batasPinjam = convertDateToString(batasPinjam); }
+
+//    public Date getTglPinjam() {
+//        return tglPinjam;
+//    }
+//
+//    public void setTglPinjam(Date tglPinjam) {
+//        this.tglPinjam = tglPinjam;
+//    }
+//
+//    public Date getDeadlinePinjam() {
+//        return deadlinePinjam;
+//    }
+//
+//    public void setDeadlinePinjam(Date deadlinePinjam) {
+//        this.deadlinePinjam = deadlinePinjam;
+//    }
+     
+    public void ubahPeminjaman(Date tglPinjam, Date batasPinjam){
         setTglPeminjaman(tglPinjam);
-        setBatasPinjam(batasPinjam);
-    }
+        setBatasPinjam(batasPinjam);    }
     
-    public void pengembalianBuku(Date tglKembaliinBuku){
-        this.pengembalian.melakukanPengembalianBuku(getTglPeminjaman(), tglKembaliinBuku);
+    public void pengembalianBuku(String tglKembaliinBuku){
+//        this.pengembalian.melakukanPengembalianBuku(getTglPeminjaman(), tglKembaliinBuku);
         boolean checkDenda = this.pengembalian.isBayarDenda(); 
         if (checkDenda == true){
             long jmlDenda = this.pengembalian.getDenda().getTotalDenda();

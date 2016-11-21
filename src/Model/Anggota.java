@@ -81,7 +81,7 @@ public class Anggota {
         boolean stat = false;
         //String statement = "Error";
         if (ketemu != -1){
-            listPeminjaman.get(ketemu).pengembalianBuku(tglKembali);
+//            listPeminjaman.get(ketemu).pengembalianBuku(tglKembali);
             stat = true;
             //statement = "Dokumentasi pengembalian buku berhasil disimpan";
         }

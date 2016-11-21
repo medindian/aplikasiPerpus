@@ -1,5 +1,6 @@
 package Model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -25,7 +26,7 @@ public class Aplikasi {
     }
     
     //untuk melakukan pengadaan buku
-    public void tambahBuku(String judul, String pengarang, String penerbit, String kodeBuku, String sinopsis, Date tahunTerbit, int jmlBuku){
+    public void tambahBuku(String judul, String pengarang, String penerbit, String kodeBuku, String sinopsis, int tahunTerbit, int jmlBuku){
         listBuku.add(new Buku(judul, pengarang, penerbit, kodeBuku, sinopsis, tahunTerbit, jmlBuku));   }
     
     //untuk mendapatkan obj2 Buku yg ada pada listBuku
@@ -111,7 +112,7 @@ public class Aplikasi {
     
     //untuk melakukan peminjaman buku yang dilakukan oleh anggota perpus
     public String PeminjamanBuku(String kodeAnggota, String kodeBuku, String kodePinjam, String tglPinjam, String batasPinjam){
-        String statement = "ini statement";
+        String statement = "";
         Anggota peminjam ;
         Buku cariBk ;
         boolean statAnggota = cariAnggotaByKode(kodeAnggota);
@@ -123,7 +124,7 @@ public class Aplikasi {
         } else {
             peminjam = (Anggota) listAnggota.get(cariArrayAnggotaByKode(kodeAnggota));
             cariBk = (Buku) listBuku.get(cariArrayBukuByKode(kodeBuku));
-            peminjam.melakukanPeminjamanBuku(new Peminjaman(cariBk, kodePinjam, tglPinjam, batasPinjam));
+//            peminjam.melakukanPeminjamanBuku(new Peminjaman(cariBk, kodePinjam, tglPinjam, batasPinjam));
             statement = "Peminjaman berhasil dilakukan";
         }
         return statement;
@@ -144,6 +145,7 @@ public class Aplikasi {
             statement = "Anda belum terdaftar atau salah memasukkan kode anggota";
         } else {
             peminjam = (Anggota) listAnggota.get(cariArrayAnggotaByKode(kodeAnggota));
+            peminjam.melakukanPengembalian(kodePeminjaman, tglKembaliinBuku);
 //            boolean status = peminjam.melakukanPengembalian(kodePeminjaman, kegKembaliinBuku);
 //            if (status == true)
 //                statement = "Data pengembalian buku berhasil dilakukan";
@@ -151,6 +153,11 @@ public class Aplikasi {
 //                statement = "Data peminjaman tidak ada";
         }
         return statement;
+    }
+    
+    public String convertDateToString(Date tgl){
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        return sdf.format(tgl);
     }
     
 }

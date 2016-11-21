@@ -6,14 +6,20 @@ import java.util.Date;
 public class Pengembalian {
     
     private String tglPengembalian;
-    private long banyakHariPinjam = 0;
+    private long banyakHariPinjam;
     private Denda denda;
+
+    public Pengembalian() {
+        this.tglPengembalian = "belum mengembalikan buku";
+        this.banyakHariPinjam = 0;
+        this.denda = new Denda();
+    }
     
     public String getTglPengembalian() {
         return tglPengembalian; }
     
-    public void setTglPengembalian(Date tglPengembalian) {
-        this.tglPengembalian = tglPengembalian.toString(); }
+    public void setTglPengembalian(String tglPengembalian) {
+        this.tglPengembalian = tglPengembalian; }
     
     public void kalkulatorPenghitungHari(String tglPeminjaman){
         //HH converts hour in 24 hours format (0-23), day calculation
@@ -24,7 +30,6 @@ public class Pengembalian {
 	try {
             d1 = format.parse(tglPeminjaman);
             d2 = format.parse(this.tglPengembalian);
-            //untuk testing
 //            System.out.println("d1 = "+d1);
 //            System.out.println("d2 = "+d2);
             
@@ -33,11 +38,11 @@ public class Pengembalian {
             long diffHours = diff / (60 * 60 * 1000) % 24;
             long diffDays = diff / (24 * 60 * 60 * 1000);
             
+//            System.out.println(diffDays + " days");
             if (diffHours > 0){
                 diffDays = diffDays+1;  }
-            //testing
 //            System.out.print(diffDays + " days, ");
-//            System.out.print(diffHours + " hours, ");
+//            System.out.println(diffHours + " hours");
 
             this.banyakHariPinjam = diffDays;
 	} catch (Exception e) {
@@ -49,9 +54,10 @@ public class Pengembalian {
     
     public boolean isBayarDenda() {
         if (this.banyakHariPinjam <= 7){
-            return true;
+            System.out.println(this.banyakHariPinjam);
+            return false;
         }
-        return false;
+        return true;
     }
     
     public Denda getDenda() {
@@ -59,20 +65,29 @@ public class Pengembalian {
     
     //karena pembuatan objek pengembalian dilakukan oleh objek peminjaman, 
         //maka dilakukan setting tgl pengembalian
-    public void melakukanPengembalianBuku(String tglPinjamBuku, Date tglKembaliinBuku){
+    public void melakukanPengembalianBuku(String tglPinjamBuku, String tglKembaliinBuku){
         setTglPengembalian(tglKembaliinBuku);
         kalkulatorPenghitungHari(tglPinjamBuku);
-        this.denda = new Denda();
         if (isBayarDenda() == true){
             this.denda.setBanyakKeterlambatan(this.banyakHariPinjam);
+//            System.out.println("banyak hari terlambat : "+denda.getBanyakKeterlambatan()+" hari");
             long dendaYgHrsDibayar = this.denda.hitungTotalDenda();
             this.denda.setTotalDenda(dendaYgHrsDibayar);
+//            System.out.println("Anda harus membayar denda sebesar Rp"+denda.getTotalDenda());
         }
     }
     
     public void pembayaranDenda(long bayar){
         long dendaYgHrsDibayar = this.denda.hitungTotalDenda();
-        denda.setTotalDenda(dendaYgHrsDibayar-bayar);
+        long kembalian = 0;
+        long dendaDibayar = dendaYgHrsDibayar-bayar;
+        if (dendaDibayar < 0){
+            kembalian = dendaDibayar*-1;
+//            System.out.println("denda lunas dan anda mendapat kembalian Rp "+kembalian);
+            dendaDibayar = 0;
+        }
+        denda.setTotalDenda(dendaDibayar);
+//        System.out.println("denda anda sekarang Rp "+denda.getTotalDenda());
     }
     
     public boolean isDendaLunas(){
