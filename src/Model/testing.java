@@ -2,7 +2,9 @@ package Model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class testing {
     
@@ -32,7 +34,7 @@ public class testing {
 //        System.out.println(d.getTotalDenda());
 //        System.out.println(d.hitungTotalDenda());
         
-        Date tgl = new Date();
+//        Date tgl = new Date();
 //        System.out.println("before : "+tgl.toString());
 //        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 //        System.out.println(sdf.format(tgl));
@@ -62,31 +64,18 @@ public class testing {
 //        bk.viewInfoBuku();
 //        System.out.println("");
 
+        Date tgl = new Date();
         //peminjaman
-//        Peminjaman pinjam  = new Peminjaman(bk, "211116", tgl.toString(), "0");
+        Peminjaman pinjam  = new Peminjaman(bk, "211116", tgl);
+        pinjam.viewTglPinjam();
+        Date baru = new Date();
+        baru.setDate(30);
+//        pinjam.setTglPeminjaman(baru);
+//        pinjam.viewTglPinjam();
+        //System.out.println(pinjam.getKodePeminjaman());
+        pinjam.pengembalianBuku(baru);
         
-        System.out.println("before : " + tgl.toString());
-        //tgl.setDate(tgl.getDate()+7);
-        tgl.setDate(24);
-        //System.out.println("after : " + tgl.toString());
-        if (tgl.getDate() >= 24 && tgl.getMonth() == 11){
-            int dt = (tgl.getDate()+7) - 30;
-            System.out.println("tgl : "+dt);
-            int bln = tgl.getMonth() + 1;
-            System.out.println("bulan : "+bln);
-            tgl.setDate(dt);
-            tgl.setMonth(bln);
-        } 
-        if (tgl.getDate() >= 24){
-            int dt = (tgl.getDate()+7) - 30;
-            System.out.println("tgl : "+dt);
-            int bln = tgl.getMonth() + 1;
-            System.out.println("bulan : "+bln);
-            tgl.setDate(dt);
-            tgl.setMonth(bln);
-        } //else if (tgl.getMonth() == 12)
-        System.out.println("after : " + tgl.toString());
-
     }
+        
 }
 //
