@@ -69,7 +69,11 @@ public class testing {
         Peminjaman pinjam  = new Peminjaman(bk, "211116", tgl);
         pinjam.viewTglPinjam();
         Date baru = new Date();
-        baru.setDate(30);
+        baru.setDate(5);
+        baru.setMonth(1);
+        baru.setYear(baru.getYear()+1);
+        //hello
+//        System.out.println("tgl balik : "+baru);
 //        pinjam.setTglPeminjaman(baru);
 //        pinjam.viewTglPinjam();
         //System.out.println(pinjam.getKodePeminjaman());

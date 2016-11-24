@@ -42,7 +42,7 @@ public class Peminjaman {
                     thn = thn+1;    }
                 bln = bln+1;
             }
-            hr = (hr+7) - banyakHariDalamSebulan(thn, bln);
+            hr = (hr+6) - banyakHariDalamSebulan(thn, bln);
             Date dd = new Date();// System.out.println("sementara : "+dd);
             dd.setDate(hr);
             dd.setMonth(bln);
@@ -85,13 +85,10 @@ public class Peminjaman {
     public void setKodePeminjaman(String kodePeminjaman) {
         this.kodePeminjaman = kodePeminjaman;   }
      
-    public void pengembalianBuku(Date tglKembaliinBuku){
-        String tglMinjem = convertDateToString(this.tglPeminjaman);
-        String tglBalikin = convertDateToString(tglKembaliinBuku);
-        this.pengembalian.melakukanPengembalianBuku(tglMinjem, tglKembaliinBuku, tglBalikin);
-        
-        boolean checkDenda = this.pengembalian.isBayarDenda(); 
-        //System.out.println("check denda : "+checkDenda);
+    
+    public void pengembalianBuku(Date tglKembali){
+        this.pengembalian.melakukanPengembalianBuku(tglPeminjaman, tglKembali);
+        boolean checkDenda = this.pengembalian.isBayarDenda();
         if (checkDenda == true){
             long jmlDenda = this.pengembalian.getDenda().getTotalDenda();
             System.out.println("Anda tidak dapat melakukan perpanjangan buku dan "+
