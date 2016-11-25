@@ -23,13 +23,13 @@ public class Anggota {
 
     public void setKodeAnggota(int kode){
         if (kode < 10){
-            this.kodeAnggota = "MEMBER-000"+ Integer.toString(kode);   }
+            this.kodeAnggota = "MEM000"+ Integer.toString(kode);   }
         else if (kode < 100){
-            this.kodeAnggota = "MEMBER-00"+ Integer.toString(kode);   }
+            this.kodeAnggota = "MEM00"+ Integer.toString(kode);   }
         else if (kode < 1000){
-            this.kodeAnggota = "MEMBER-0"+ Integer.toString(kode);   }
+            this.kodeAnggota = "MEM0"+ Integer.toString(kode);   }
         else 
-            this.kodeAnggota = "MEMBER-00"+ Integer.toString(kode);
+            this.kodeAnggota = "MEM"+ Integer.toString(kode);
     }
     
     public String getNama() {

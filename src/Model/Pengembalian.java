@@ -11,6 +11,7 @@ public class Pengembalian {
 
     public Pengembalian() {
         this.tglPengembalian = null;
+        //indikator peminjaman dilihat dari batas deadline
         this.banyakHariPinjam = 0;
         this.denda = new Denda();
     }
@@ -21,6 +22,20 @@ public class Pengembalian {
     public void setTglPengembalian(Date tglPengembalian) {
         this.tglPengembalian = tglPengembalian; }
     
+    public long hitungWaktu(String tgl){
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	Date d1 = null;
+        long diff = 0;
+//        long diffHours = 0;
+//        long diffDays = 0;
+	try {
+            d1 = format.parse(tgl);
+            diff = d1.getTime();            
+	} catch (Exception e) {
+            e.printStackTrace();    }
+        return diff;//diffDays;
+    }
+    
     public long kalkulatorPenghitungHari(String tgl1, String tgl2){
         //HH converts hour in 24 hours format (0-23), day calculation
 	SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -29,7 +44,6 @@ public class Pengembalian {
         long diff =0;
         long diffHours = 0;
         long diffDays = 0;
-
 	try {
             d1 = format.parse(tgl1);
             d2 = format.parse(tgl2);
@@ -55,29 +69,35 @@ public class Pengembalian {
     public long getBanyakHariPinjam() {
         return this.banyakHariPinjam;    }
     
-    public boolean isBayarDenda() {
-        if (this.banyakHariPinjam <= 7){
-            return false;
+    public boolean isBayarDenda(String deadline, String kembali) {
+        long diffDeadline = hitungWaktu(deadline);
+        long diffKembali = hitungWaktu(kembali);
+        if (diffKembali > diffDeadline){
+            denda.setStatusDenda(true);
+            return true;
         }
-        return true;
+        return false;
+    }
+    //denda.getTotalDenda() == 0
+    public boolean isDendaLunas(){
+        if (denda.getStatusDenda() == false)
+            return true;
+        return false;
     }
     
     public Denda getDenda() {
         return denda;   }
     
-    public String convertDateToString(Date tglBaru){
-        SimpleDateFormat newFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String newDate = "";
-        newDate = newFormat.format(tglBaru);
-        return newDate; }
+//    public String convertDateToString(Date tglBaru){
+//        SimpleDateFormat newFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+//        String newDate = "";
+//        newDate = newFormat.format(tglBaru);
+//        return newDate; }
     
-    public void melakukanPengembalianBuku(Date tglPinjamBuku, Date tglKembaliinBuku){
+    public void melakukanPengembalianBuku(String tglPinjam, String tglDd, Date tglKembaliinBuku, String tglKembali){
         setTglPengembalian(tglKembaliinBuku);
-        String tglPinjam = convertDateToString(tglPinjamBuku);
-        String tglKembali = convertDateToString(tglKembaliinBuku);
         setBanyakHariPinjam(tglPinjam, tglKembali);
-
-        if (isBayarDenda() == true){
+        if(isBayarDenda(tglDd, tglKembali) == true){
             this.denda.setBanyakKeterlambatan(this.banyakHariPinjam);
             System.out.println("banyak hari terlambat : "+denda.getBanyakKeterlambatan()+" hari");
             long dendaYgHrsDibayar = this.denda.hitungTotalDenda();
@@ -89,20 +109,15 @@ public class Pengembalian {
     public void pembayaranDenda(long bayar){
         long dendaYgHrsDibayar = this.denda.hitungTotalDenda();
         long kembalian = 0;
-        long dendaDibayar = dendaYgHrsDibayar-bayar;
-        if (dendaDibayar < 0){
-            kembalian = dendaDibayar*-1;
-//            System.out.println("denda lunas dan anda mendapat kembalian Rp "+kembalian);
-            dendaDibayar = 0;
+        long dendaTerbayar = dendaYgHrsDibayar-bayar;
+        if (dendaTerbayar <= 0){
+            kembalian = dendaTerbayar*-1;
+            System.out.println("Denda lunas dan anda mendapat kembalian Rp "+kembalian);
+            denda.setStatusDenda(false);
+            dendaTerbayar = 0;
         }
-        denda.setTotalDenda(dendaDibayar);
-//        System.out.println("denda anda sekarang Rp "+denda.getTotalDenda());
-    }
-    
-    public boolean isDendaLunas(){
-        if (denda.getTotalDenda() == 0)
-            return true;
-        return false;
+        denda.setTotalDenda(dendaTerbayar);
+        System.out.println("Denda anda sekarang Rp "+denda.getTotalDenda());
     }
     
 }

@@ -25,7 +25,12 @@ public class Peminjaman {
         this.pengembalian = new Pengembalian();
     }
     
-    //iMonth : 1 - 12
+    public boolean sudahMengembalikanBuku(){
+        if (pengembalian.getTglPengembalian() == null)
+            return false;
+        return true;
+    }
+    
     public int banyakHariDalamSebulan(int iYear, int iMonth){
             int month = iMonth - 1;
             Calendar mycal = new GregorianCalendar(iYear, month, 1);
@@ -34,22 +39,18 @@ public class Peminjaman {
     }
     
     public Date hitungBatasPeminjaman(Date tgl){
-            int hr = tgl.getDate();
-            int bln = tgl.getMonth(); // 0 - 11
-            int thn = tgl.getYear();
-            if (hr >= 24){
-                if (bln == 11){
-                    thn = thn+1;    }
-                bln = bln+1;
-            }
-            hr = (hr+6) - banyakHariDalamSebulan(thn, bln);
-            Date dd = new Date();// System.out.println("sementara : "+dd);
-            dd.setDate(hr);
-            dd.setMonth(bln);
-            dd.setYear(thn);
-            dd.setHours(20);
-            dd.setMinutes(0);
-            dd.setSeconds(0);// System.out.println("hasil akhir : " + dd);
+        int hr = tgl.getDate();
+        int bln = tgl.getMonth(); // 0 - 11
+        int thn = tgl.getYear();
+        if (hr >= 24){
+            if (bln == 11){
+                thn = thn+1;    }
+            bln = bln+1;    }
+        hr = (hr+7) - banyakHariDalamSebulan(thn, bln);
+        Date dd = new Date();// System.out.println("sementara : "+dd);
+        dd.setDate(hr);     dd.setMonth(bln);   dd.setYear(thn);
+        dd.setHours(20);    dd.setMinutes(0);   dd.setSeconds(0);
+        // System.out.println("hasil akhir : " + dd);
             return dd;
     }
 
@@ -58,15 +59,13 @@ public class Peminjaman {
 
     public void setTglPeminjaman(Date tglPinjam) {
         this.tglPeminjaman = tglPinjam;
-        setBatasPinjam();
-    }
+        setBatasPinjam();   }
 
     public Date getBatasPinjam() {
         return batasPinjam; }
     
     public void setBatasPinjam(){
-        this.batasPinjam = hitungBatasPeminjaman(this.tglPeminjaman);
-    }
+        this.batasPinjam = hitungBatasPeminjaman(this.tglPeminjaman);   }
     
     public String convertDateToString(Date tglBaru){
         SimpleDateFormat newFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -84,11 +83,19 @@ public class Peminjaman {
 
     public void setKodePeminjaman(String kodePeminjaman) {
         this.kodePeminjaman = kodePeminjaman;   }
-     
+
+    public Pengembalian getPengembalian() {
+        return pengembalian;    }
+
+    public void setPengembalian(Pengembalian pengembalian) {
+        this.pengembalian = pengembalian;   }
     
     public void pengembalianBuku(Date tglKembali){
-        this.pengembalian.melakukanPengembalianBuku(tglPeminjaman, tglKembali);
-        boolean checkDenda = this.pengembalian.isBayarDenda();
+        String pinjam = convertDateToString(this.tglPeminjaman);
+        String dd = convertDateToString(this.batasPinjam);
+        String kembali = convertDateToString(tglKembali);
+        this.pengembalian.melakukanPengembalianBuku(pinjam, dd, tglKembali, kembali);
+        boolean checkDenda = this.pengembalian.isBayarDenda(dd, kembali);
         if (checkDenda == true){
             long jmlDenda = this.pengembalian.getDenda().getTotalDenda();
             System.out.println("Anda tidak dapat melakukan perpanjangan buku dan "+
@@ -97,11 +104,13 @@ public class Peminjaman {
             System.out.println("Terima kasih sudah mengembalikan buku tepat waktu!");
     }
     
-    public void bayarDenda(int dendaYgDibayar){
+    public void bayarDenda(long dendaYgDibayar){
         this.pengembalian.pembayaranDenda(dendaYgDibayar);
         if (this.pengembalian.isDendaLunas() == false)
             System.out.println("Anda masih harus membayar hutang sebesar Rp "
                     + this.pengembalian.getDenda().getTotalDenda());
     }
-        
+    
+    
+    
 }
