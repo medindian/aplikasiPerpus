@@ -8,7 +8,6 @@ public class Anggota {
     private String nama, alamat, noTelp, email, kodeAnggota;
     private ArrayList<Peminjaman> listPeminjaman;
 
-    //public Anggota(String nama, String alamat, String noTelp, String email, String username, int kode) {
     public Anggota(String nama, String alamat, String noTelp, String email, int kode) {
         this.nama = nama;
         this.alamat = alamat;
@@ -59,10 +58,16 @@ public class Anggota {
     public ArrayList getListPeminjaman() {
         return listPeminjaman;  }
 
+    public void viewBiodata(){
+        System.out.println("Kode Anggota       : "+this.kodeAnggota);
+        System.out.println("Nama               : "+this.nama);
+        System.out.println("Alamat             : "+this.alamat);
+        System.out.println("No telp            : "+this.noTelp);
+        System.out.println("E-mail             : "+this.email);
+        System.out.println("Buku yang dipinjam : "+this.listPeminjaman.size());
+    }
     
-    //public void melakukanPeminjamanBuku(Buku bukuYgDipinjam, String kodePeminjaman, Date tglPeminjaman, Date batasPeminjaman){
     public void melakukanPeminjamanBuku(Peminjaman pinjam){
-//        Peminjaman kegPinjam = new Peminjaman(bukuYgDipinjam, kodePeminjaman, tglPeminjaman, batasPeminjaman);
         this.listPeminjaman.add(pinjam);
         System.out.println("Dokumentasi Peminjaman berhasil disimpan");
     }
@@ -79,12 +84,32 @@ public class Anggota {
     public boolean melakukanPengembalian(String kodePeminjaman, Date tglKembali){
         int ketemu = cariPeminjaman(kodePeminjaman);
         boolean stat = false;
-        //String statement = "Error";
+        String statement = "Error";
         if (ketemu != -1){
-//            listPeminjaman.get(ketemu).pengembalianBuku(tglKembali);
+            listPeminjaman.get(ketemu).pengembalianBuku(tglKembali);
             stat = true;
-            //statement = "Dokumentasi pengembalian buku berhasil disimpan";
+            statement = "Dokumentasi pengembalian buku berhasil disimpan";
         }
+        System.out.println(statement);
+        return stat;
+    }
+    
+    public boolean bayarDenda(String kodePeminjaman, long uangDenda){
+        int ketemu = cariPeminjaman(kodePeminjaman);
+        boolean stat = false;
+        String statement = "Error";
+        if (ketemu != -1){
+            listPeminjaman.get(ketemu).bayarDenda(uangDenda);
+            long dendaSekarang = listPeminjaman.get(ketemu).getPengembalian().getDenda().getTotalDenda();
+            if (listPeminjaman.get(ketemu).getPengembalian().isDendaLunas() == true){
+                stat = true;    
+                System.out.println("Denda anda sudah lunas");
+            } else {
+                System.out.println("Anda masih memiliki denda sebanyak Rp "+dendaSekarang);
+            }
+            statement = "Dokumentasi pembayaran denda berhasil disimpan";
+        }
+        System.out.println(statement);
         return stat;
     }
     

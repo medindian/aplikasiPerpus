@@ -9,18 +9,44 @@ public class testing {
         
         //anggota
         //String nama, String alamat, String noTelp, String email, int kode
-        Anggota a = new Anggota("dubidam", "ohoho", "081526517", "ahahah", 1);
-        System.out.println("kode anggota : "+ a.getKodeAnggota());
+//        Anggota a = new Anggota("dubidam", "ohoho", "081526517", "ahahah", 1);
         
         //pengembalian
-//        Pengembalian kembali = new Pengembalian();        
-//        Denda d = kembali.getDenda();
-        Buku bk = new Buku("Hello word", "123", "bdg", "BK0101", "one upon a time", 2001, 5);
-        Date tgl = new Date();
-        Peminjaman pinjam  = new Peminjaman(bk, "211116", tgl);
-        a.melakukanPeminjamanBuku(pinjam);
-        System.out.println(a.cariPeminjaman("123"));
+//        Buku bk = new Buku("Hello word", "123", "bdg", "BK0101", "one upon a time", 2001, 5);
+//        bk.viewInfoBuku();
+        //String judul, String pengarang, String penerbit, String kodeBuku, int jmlBuku
+//        Buku bkbk = new Buku("Dubidam", "lalala", "us", "BK0213", 3);
+//        bkbk.viewInfoBuku();
         
+//        Date tgl = new Date();
+//        Peminjaman pinjam  = new Peminjaman(bk, "211116", tgl);        
+        
+        Aplikasi app = new Aplikasi();
+        app.tambahAnggota("Hello", "World", "0123124", "ikeren@mail.com");
+        app.tambahAnggota("Lala", "Test", "0123124", "yoho@mail.com");
+        app.tambahAnggota("D", "pasir emas", "01388321", "yoho@mail.com");
+//        app.viewSemuaListAnggota();
+        app.tambahBuku("Hello word", "123", "bdg", "BK0101", "one upon a time", 2001, 5);
+        app.tambahBuku("Buku 2", "penulis 2", "bdg", "BK0312", "", 2005, 2);
+        app.tambahBuku("Buku 3", "penulis 3", "jkt", "BK0912", "", 2002, 4);
+        app.viewSemuaListBuku();
+        
+//        System.out.println(app.PeminjamanBuku("MEM0003", "BK0101", "00123"));
+        System.out.println(app.PeminjamanBuku("MEM0001", "BK0101", "00123"));
+        app.viewSemuaListAnggota();
+        Date tgl = new Date();
+        tgl.setDate(10);
+        tgl.setMonth(11);
+        app.PengembalianBuku("MEM0001", "00123", tgl);
+//        app.PeminjamanBuku(kodeAnggota, kodeBuku, kodePinjam);
+//        Date balik = new Date();
+//        balik.setDate(30);
+//        balik.setMonth(11);
+//        a.melakukanPengembalian("211116", balik);
+//        System.out.println("pembayaran ke-1");
+//        a.bayarDenda("211116", 10000);
+//        System.out.println("pembayaran ke-2");
+//        a.bayarDenda("211116", 25000);
         
         //peminjaman
 //        Peminjaman pinjam  = new Peminjaman(bk, "211116", tgl);

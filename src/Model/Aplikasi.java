@@ -17,11 +17,25 @@ public class Aplikasi {
         this.listBuku = new ArrayList<Buku>();
     }
     
-    //untuk melakukan pendaftaran anggota baru, maka harus melewati objek pendaftaran
     // yg akan membuat objek anggota
     public void tambahAnggota(String nama, String alamat, String noTelp, String email){
         this.kode = kode+1;
-        pendaftaran.daftarAnggotaBaru(nama, alamat, noTelp, email, this.kode);
+        int g = -2;
+//        String statement = "";
+        if (listAnggota.size() == 0){
+            pendaftaran.daftarAnggotaBaru(nama, alamat, noTelp, email, this.kode);  }
+        else {
+            for (int i = 0; i < listAnggota.size(); i++){
+                Anggota a = (Anggota) listAnggota.get(i);
+                if (a.getNama() == nama || a.getEmail() == email){
+                    g = -1;  }
+                else{
+                    g = i;
+                    System.out.println("Nama atau email sudah digunakan");  }
+            }
+            if (g > -1)
+                pendaftaran.daftarAnggotaBaru(nama, alamat, noTelp, email, this.kode);
+        }
         this.listAnggota = pendaftaran.getAnggota();
     }
     
@@ -91,43 +105,53 @@ public class Aplikasi {
         int ketemu = cariArrayAnggotaByKode(kodeAnggota);
         return ketemu != -1;
     }
-    
-    //untuk mencari array dari data seorang anggota perpus berdasarkan nama org tersebut
-    public int cariArrayAnggotaByNama(String nama){
-        Anggota cari;
-        int arrAg = -1;
-        for (int i = 0; i < listAnggota.size(); i++){
-            cari = (Anggota) listAnggota.get(i);
-            if ( (cari.getNama()).equals(nama) ){
-                arrAg = i;  }
-        }
-        return arrAg;
-    }
-    
-    //untuk mencari keberadaan data seorang anggota perpus berdasarkan nama org tersebut
-    public boolean cariAnggotaByNama(String nama){
-        int ketemu = cariArrayAnggotaByNama(nama);
-        return ketemu != -1; //(?)
-    }
-    
-    //untuk melakukan peminjaman buku yang dilakukan oleh anggota perpus
-    public String PeminjamanBuku(String kodeAnggota, String kodeBuku, String kodePinjam, String tglPinjam, String batasPinjam){
-        String statement = "";
-        Anggota peminjam ;
-        Buku cariBk ;
-        boolean statAnggota = cariAnggotaByKode(kodeAnggota);
-        boolean statBuku = cariBukuByKode(kodeBuku);
-        if (statBuku == false) {
-            statement = "Data buku tidak ada, silahkan simpan data buku terlebih dahulu";
-        } else if (statAnggota == false){
-            statement = "Anda belum terdaftar atau salah memasukkan kode anggota";
+
+    public String PeminjamanBuku(String kodeAnggota, String kodeBuku, String kodePinjam){
+        String statement = "Error";
+        int arAgt = cariArrayAnggotaByKode(kodeAnggota);
+        int arBk = cariArrayBukuByKode(kodeBuku);
+        if (arBk == -1){
+            statement = "data buku belum terdaftar";
+        } else if (arAgt == -1) {
+            statement = "data anggota perpustakaan belum terdaftar, silahkan "+
+                    " melakukan pendaftaran terlebih dahulu";
         } else {
-            peminjam = (Anggota) listAnggota.get(cariArrayAnggotaByKode(kodeAnggota));
-            cariBk = (Buku) listBuku.get(cariArrayBukuByKode(kodeBuku));
-//            peminjam.melakukanPeminjamanBuku(new Peminjaman(cariBk, kodePinjam, tglPinjam, batasPinjam));
-            statement = "Peminjaman berhasil dilakukan";
+            Anggota peminjam = (Anggota) listAnggota.get(arAgt);
+            Buku bk = (Buku) listBuku.get(arBk);
+            Date tglPinjam = new Date();
+            Peminjaman pinjam = new Peminjaman(bk, kodePinjam, tglPinjam);
+            peminjam.melakukanPeminjamanBuku(pinjam);
+            if (peminjam.cariPeminjaman(kodePinjam) != 1){
+                long jmlBukuDulu = bk.getJumlahBuku();
+                System.out.println("jmlBukuBefore : "+jmlBukuDulu);
+                bk.bukuDipinjam();
+                long jmlBukuSekarang = bk.getJumlahBuku();
+                System.out.println("jmlBukuAfter : "+jmlBukuSekarang);
+                statement = "dokumentasi peminjaman sudah tersimpan";
+            } else
+                statement = "dokumentasi peminjaman gagal disimpan";
         }
         return statement;
+    }
+    
+    public void viewSemuaListAnggota(){
+        if (listAnggota.size() == 0){
+            System.out.println("Belum ada anggota perpustakaan yang terdaftar");    }
+        for (int i = 0; i < listAnggota.size(); i++){
+            Anggota a = (Anggota) listAnggota.get(i);
+            a.viewBiodata();
+        }
+    }
+    
+    public void viewSemuaListBuku(){
+        int no = 0;
+        if (listBuku.size() == 0){
+            System.out.println("Belum ada buku yang terdaftar");    }
+        for (int i = 0; i < listBuku.size(); i++){
+            Buku bk = (Buku) listBuku.get(i);
+            no = no + 1;
+            System.out.println(no+". "+bk.getJudul());
+        }
     }
     
     //untuk melakukan pengembalian buku dengan cara mencari data anggota terlebih dahulu
@@ -136,21 +160,21 @@ public class Aplikasi {
     //bila data peminjaman ada, maka pengembalian dapat dilakukan
                           //tidak ada, maka pengembalian bersifat tidak valid
     public String PengembalianBuku(String kodeAnggota, String kodePeminjaman, Date tglKembaliinBuku){
-        String statement = "Error";
+        String statement = "Data peminjaman tidak ditemukan";
+        boolean cek = false;
         Anggota peminjam;
         Pengembalian kegKembaliinBuku = new Pengembalian();
-//        kegKembaliinBuku.setTglPengembalianBuku(tglKembaliinBuku);
-        boolean statAnggota = cariAnggotaByKode(kodeAnggota);
-        if (statAnggota == false){
+        int statA = cariArrayAnggotaByKode(kodeAnggota);
+        if (statA == -1){
             statement = "Anda belum terdaftar atau salah memasukkan kode anggota";
         } else {
-            peminjam = (Anggota) listAnggota.get(cariArrayAnggotaByKode(kodeAnggota));
-            peminjam.melakukanPengembalian(kodePeminjaman, tglKembaliinBuku);
-//            boolean status = peminjam.melakukanPengembalian(kodePeminjaman, kegKembaliinBuku);
-//            if (status == true)
-//                statement = "Data pengembalian buku berhasil dilakukan";
-//            else
-//                statement = "Data peminjaman tidak ada";
+            peminjam = (Anggota) listAnggota.get(statA);
+            System.out.println("array : "+statA);
+            cek = peminjam.melakukanPengembalian(kodePeminjaman, tglKembaliinBuku);
+            if (cek == true)
+                statement = "Dokumentasi pengembalian buku berhasil disimpan";
+            else
+                statement = "Dokumentasi pengembalian buku gagal disimpan";
         }
         return statement;
     }

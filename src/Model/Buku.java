@@ -7,15 +7,15 @@ public class Buku {
     private String judul, pengarang, penerbit, sinopsis, kodeBuku, thnTerbit;
     private int jumlahBuku;
 
-    Buku(String judul, String pengarang, String penerbit, String kodeBuku, int jmlBuku) {
-        this.judul = judul;
-        this.pengarang = pengarang;
-        this.penerbit = penerbit;
-        this.kodeBuku = kodeBuku;
-        this.sinopsis = "";
-        this.thnTerbit = "";
-        this.jumlahBuku = jmlBuku;
-    }
+//    Buku(String judul, String pengarang, String penerbit, String kodeBuku, int jmlBuku) {
+//        this.judul = judul;
+//        this.pengarang = pengarang;
+//        this.penerbit = penerbit;
+//        this.kodeBuku = kodeBuku;
+//        this.sinopsis = "";
+//        this.thnTerbit = "";
+//        this.jumlahBuku = jmlBuku;
+//    }
     
     Buku(String judul, String pengarang, String penerbit, String kodeBuku, String sinopsis, int tahunTerbit, int jmlBuku) {
         this.judul = judul;
@@ -25,7 +25,7 @@ public class Buku {
         this.sinopsis = sinopsis;
         cekTahun(tahunTerbit);
         cekJml(jmlBuku);
-//        this.jumlahBuku = jmlBuku;
+        this.jumlahBuku = jmlBuku;
     }
 
     public String getJudul() {

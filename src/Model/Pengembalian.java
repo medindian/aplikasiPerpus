@@ -107,17 +107,19 @@ public class Pengembalian {
     }
     
     public void pembayaranDenda(long bayar){
-        long dendaYgHrsDibayar = this.denda.hitungTotalDenda();
+        long dendaYgHrsDibayar = this.denda.getTotalDenda();
+        System.out.println("denda sekarang : "+dendaYgHrsDibayar);
         long kembalian = 0;
         long dendaTerbayar = dendaYgHrsDibayar-bayar;
+        denda.setTotalDenda(dendaTerbayar);
         if (dendaTerbayar <= 0){
             kembalian = dendaTerbayar*-1;
             System.out.println("Denda lunas dan anda mendapat kembalian Rp "+kembalian);
             denda.setStatusDenda(false);
             dendaTerbayar = 0;
         }
-        denda.setTotalDenda(dendaTerbayar);
-        System.out.println("Denda anda sekarang Rp "+denda.getTotalDenda());
+//        denda.setTotalDenda(dendaTerbayar);
+//        System.out.println("Denda anda sekarang Rp "+denda.getTotalDenda());
     }
     
 }

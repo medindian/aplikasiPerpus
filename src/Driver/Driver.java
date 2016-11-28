@@ -1,13 +1,15 @@
 package Driver;
 
-import controller.*;
-import model.*;
+import Model.*;
+import Controller.*;
+import View.*;
 
 
 public class Driver {
 //    public static void main(String[] args) {
-//        Aplikasi app = new Aplikasi();
-//        //controllerA conA = new controllerA(app);
-//        
+        Aplikasi app = new Aplikasi();
+//        controller con = new controller(app);
+        
+        
 //    }
 }
