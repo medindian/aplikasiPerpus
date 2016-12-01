@@ -53,8 +53,8 @@ public class Pengembalian {
             diffHours = diff / (60 * 60 * 1000) % 24;
             diffDays = diff / (24 * 60 * 60 * 1000);
             
-            if (diffHours > 0){
-                diffDays = diffDays+1;  }
+//            if (diffHours > 0){
+//                diffDays = diffDays+1;  }
             //this.banyakHariPinjam = diffDays;
 //            System.out.println("this.banyakHariPinjam : "+banyakHariPinjam);
 	} catch (Exception e) {
@@ -78,7 +78,7 @@ public class Pengembalian {
         }
         return false;
     }
-    //denda.getTotalDenda() == 0
+
     public boolean isDendaLunas(){
         if (denda.getStatusDenda() == false)
             return true;
@@ -88,18 +88,12 @@ public class Pengembalian {
     public Denda getDenda() {
         return denda;   }
     
-//    public String convertDateToString(Date tglBaru){
-//        SimpleDateFormat newFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//        String newDate = "";
-//        newDate = newFormat.format(tglBaru);
-//        return newDate; }
-    
     public void melakukanPengembalianBuku(String tglPinjam, String tglDd, Date tglKembaliinBuku, String tglKembali){
         setTglPengembalian(tglKembaliinBuku);
         setBanyakHariPinjam(tglPinjam, tglKembali);
         if(isBayarDenda(tglDd, tglKembali) == true){
-            this.denda.setBanyakKeterlambatan(this.banyakHariPinjam);
-            System.out.println("banyak hari terlambat : "+denda.getBanyakKeterlambatan()+" hari");
+            this.denda.setBanyakKeterlambatan(kalkulatorPenghitungHari(tglDd, tglKembali));
+            System.out.println("Banyak hari terlambat mengembalikan buku : "+denda.getBanyakKeterlambatan()+" hari");
             long dendaYgHrsDibayar = this.denda.hitungTotalDenda();
             this.denda.setTotalDenda(dendaYgHrsDibayar);
         }

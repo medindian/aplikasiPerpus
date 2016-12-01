@@ -36,6 +36,7 @@ public class Aplikasi {
             if (g > -1)
                 pendaftaran.daftarAnggotaBaru(nama, alamat, noTelp, email, this.kode);
         }
+        System.out.println("Pendaftaran berhasil dilakukan");
         this.listAnggota = pendaftaran.getAnggota();
     }
     
@@ -121,13 +122,11 @@ public class Aplikasi {
             Date tglPinjam = new Date();
             Peminjaman pinjam = new Peminjaman(bk, kodePinjam, tglPinjam);
             peminjam.melakukanPeminjamanBuku(pinjam);
-            if (peminjam.cariPeminjaman(kodePinjam) != 1){
-                long jmlBukuDulu = bk.getJumlahBuku();
-                System.out.println("jmlBukuBefore : "+jmlBukuDulu);
+            if (peminjam.cariPeminjaman(kodePinjam) != -1){
+                long jmlBukuDulu = bk.getJumlahBuku(); // System.out.println("jmlBukuBefore : "+jmlBukuDulu);
                 bk.bukuDipinjam();
-                long jmlBukuSekarang = bk.getJumlahBuku();
-                System.out.println("jmlBukuAfter : "+jmlBukuSekarang);
-                statement = "dokumentasi peminjaman sudah tersimpan";
+                long jmlBukuSekarang = bk.getJumlahBuku(); // System.out.println("jmlBukuAfter : "+jmlBukuSekarang);
+                statement = "Dokumentasi peminjaman sudah tersimpan";
             } else
                 statement = "dokumentasi peminjaman gagal disimpan";
         }
@@ -154,11 +153,6 @@ public class Aplikasi {
         }
     }
     
-    //untuk melakukan pengembalian buku dengan cara mencari data anggota terlebih dahulu
-    //bila data anggota ada, maka dicari data peminjaman berdasarkan kode peminjaman
-                      //tidak ada, maka peminjaman bersifat tidak valid
-    //bila data peminjaman ada, maka pengembalian dapat dilakukan
-                          //tidak ada, maka pengembalian bersifat tidak valid
     public String PengembalianBuku(String kodeAnggota, String kodePeminjaman, Date tglKembaliinBuku){
         String statement = "Data peminjaman tidak ditemukan";
         boolean cek = false;
@@ -166,15 +160,32 @@ public class Aplikasi {
         Pengembalian kegKembaliinBuku = new Pengembalian();
         int statA = cariArrayAnggotaByKode(kodeAnggota);
         if (statA == -1){
-            statement = "Anda belum terdaftar atau salah memasukkan kode anggota";
+            statement = "Anda salah memasukkan kode anggota";
         } else {
             peminjam = (Anggota) listAnggota.get(statA);
-            System.out.println("array : "+statA);
             cek = peminjam.melakukanPengembalian(kodePeminjaman, tglKembaliinBuku);
             if (cek == true)
                 statement = "Dokumentasi pengembalian buku berhasil disimpan";
             else
                 statement = "Dokumentasi pengembalian buku gagal disimpan";
+        }
+        return statement;
+    }
+    
+    public String BayarDenda(String kodeAnggota, String kodePeminjaman, long dendaDibayar){
+        String statement = "Data peminjaman tidak ditemukan";
+        boolean cek = false;
+        Anggota peminjam;
+        int statA = cariArrayAnggotaByKode(kodeAnggota);
+        if (statA == -1){
+            statement = "Anda salah memasukkan kode anggota";
+        } else {
+            peminjam = (Anggota) listAnggota.get(statA);
+            cek = peminjam.bayarDenda(kodePeminjaman, dendaDibayar);
+            if (cek == true)
+                statement = "Dokumentasi denda berhasil disimpan";
+            else
+                statement = "Dokumentasi denda berhasil gagal disimpan";
         }
         return statement;
     }

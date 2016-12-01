@@ -23,20 +23,27 @@ public class testing {
         
         Aplikasi app = new Aplikasi();
         app.tambahAnggota("Hello", "World", "0123124", "ikeren@mail.com");
-        app.tambahAnggota("Lala", "Test", "0123124", "yoho@mail.com");
-        app.tambahAnggota("D", "pasir emas", "01388321", "yoho@mail.com");
+//        app.tambahAnggota("Lala", "Test", "0123124", "yoho@mail.com");
+//        app.tambahAnggota("D", "pasir emas", "01388321", "yoho@mail.com");
 //        app.viewSemuaListAnggota();
         app.tambahBuku("Hello word", "123", "bdg", "BK0101", "one upon a time", 2001, 5);
         app.tambahBuku("Buku 2", "penulis 2", "bdg", "BK0312", "", 2005, 2);
         app.tambahBuku("Buku 3", "penulis 3", "jkt", "BK0912", "", 2002, 4);
-        app.viewSemuaListBuku();
+//        app.viewSemuaListBuku();
         
 //        System.out.println(app.PeminjamanBuku("MEM0003", "BK0101", "00123"));
         System.out.println(app.PeminjamanBuku("MEM0001", "BK0101", "00123"));
-        app.viewSemuaListAnggota();
+//        System.out.println(app.PeminjamanBuku("MEM0002", "BK0101", "00123"));
+//        app.viewSemuaListAnggota();
         Date tgl = new Date();
-        tgl.setDate(10);
-        tgl.setMonth(11);
+        tgl.setDate(14);
+        tgl.setHours(10);
+        
+        Anggota a = (Anggota) app.getListAnggota().get(app.cariArrayAnggotaByKode("MEM0001"));
+        Peminjaman p = (Peminjaman) a.getListPeminjaman().get(a.cariPeminjaman("00123"));
+        p.viewTglPinjam();
+
+        System.out.println("Tgl Balik : "+tgl.toString());
         app.PengembalianBuku("MEM0001", "00123", tgl);
 //        app.PeminjamanBuku(kodeAnggota, kodeBuku, kodePinjam);
 //        Date balik = new Date();

@@ -21,7 +21,7 @@ public class Peminjaman {
         this.buku = bukuYgDipinjam;
         this.kodePeminjaman = kodePeminjaman;
         this.tglPeminjaman = tglPinjam;
-        this.batasPinjam = hitungBatasPeminjaman(tglPinjam);
+        this.batasPinjam = hitungBatasPeminjaman();
         this.pengembalian = new Pengembalian();
     }
     
@@ -32,26 +32,24 @@ public class Peminjaman {
     }
     
     public int banyakHariDalamSebulan(int iYear, int iMonth){
-            int month = iMonth - 1;
-            Calendar mycal = new GregorianCalendar(iYear, month, 1);
+            Calendar mycal = new GregorianCalendar(iYear, iMonth, 1);
             int daysInMonth = mycal.getActualMaximum(Calendar.DAY_OF_MONTH);
             return daysInMonth;
     }
     
-    public Date hitungBatasPeminjaman(Date tgl){
-        int hr = tgl.getDate();
-        int bln = tgl.getMonth(); // 0 - 11
-        int thn = tgl.getYear();
-        if (hr >= 24){
-            if (bln == 11){
-                thn = thn+1;    }
-            bln = bln+1;    }
-        hr = (hr+7) - banyakHariDalamSebulan(thn, bln);
-        Date dd = new Date();// System.out.println("sementara : "+dd);
+    public Date hitungBatasPeminjaman(){
+        int hr = this.tglPeminjaman.getDate();
+        int bln = this.tglPeminjaman.getMonth(); // 0 - 11
+        int thn = this.tglPeminjaman.getYear();
+        if (hr >= 25 && banyakHariDalamSebulan(thn, bln) == 30 && bln == 11) {
+                hr = (hr+7) - banyakHariDalamSebulan(thn, bln);
+                bln += 1;   thn += 1;
+        } else
+            hr = hr+7;
+        Date dd = new Date();
         dd.setDate(hr);     dd.setMonth(bln);   dd.setYear(thn);
         dd.setHours(20);    dd.setMinutes(0);   dd.setSeconds(0);
-        // System.out.println("hasil akhir : " + dd);
-            return dd;
+        return dd;
     }
 
     public Date getTglPeminjaman() {
@@ -65,7 +63,7 @@ public class Peminjaman {
         return batasPinjam; }
     
     public void setBatasPinjam(){
-        this.batasPinjam = hitungBatasPeminjaman(this.tglPeminjaman);   }
+        this.batasPinjam = hitungBatasPeminjaman();   }
     
     public String convertDateToString(Date tglBaru){
         SimpleDateFormat newFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

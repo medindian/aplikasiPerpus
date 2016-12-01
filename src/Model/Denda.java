@@ -8,7 +8,7 @@ public class Denda {
 
     //menghitung banyaknya hari pinjam - 7 hari
     public void setBanyakKeterlambatan(long banyakHariPinjam) {
-        this.banyakKeterlambatan = banyakHariPinjam-7; }
+        this.banyakKeterlambatan = banyakHariPinjam; }
     
     public long getBanyakKeterlambatan(){
         return this.banyakKeterlambatan;    }
