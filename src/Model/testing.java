@@ -5,7 +5,7 @@ import java.util.*;
 
 public class testing {
     
-    public static void main(String[] args) throws ParseException {
+//    public static void main(String[] args) throws ParseException {
         
         //anggota
         //String nama, String alamat, String noTelp, String email, int kode
@@ -21,22 +21,22 @@ public class testing {
 //        Date tgl = new Date();
 //        Peminjaman pinjam  = new Peminjaman(bk, "211116", tgl);        
         
-        Aplikasi app = new Aplikasi();
-        app.tambahAnggota("Hello", "World", "0123124", "ikeren@mail.com");
-        app.tambahAnggota("Lala", "Test", "0123124", "yoho@mail.com");
+//        Aplikasi app = new Aplikasi();
+//        app.tambahAnggota("Hello", "World", "0123124", "ikeren@mail.com");
+//        app.tambahAnggota("Lala", "Test", "0123124", "yoho@mail.com");
 //        app.tambahAnggota("D", "pasir emas", "01388321", "yoho@mail.com");
 //        app.viewSemuaListAnggota();
-        app.tambahBuku("Hello word", "123 hai", "bdg", "BK0101", "one upon a time", 2001, 5);
-        app.tambahBuku("Words are word", "penulis 2", "bdg", "BK0312", "", 2005, 2);
-        app.tambahBuku("Buku 3", "123", "jkt", "BK0912", "", 2002, 4);
-        app.viewSemuaListBuku();
+//        app.tambahBuku("Hello word", "123 hai", "bdg", "BK0101", "one upon a time", 2001, 5);
+//        app.tambahBuku("Words are word", "penulis 2", "bdg", "BK0312", "", 2005, 2);
+//        app.tambahBuku("Buku 3", "123", "jkt", "BK0912", "", 2002, 4);
+//        app.viewSemuaListBuku();
 //        System.out.println(app.PeminjamanBuku("MEM0003", "BK0101", "00123"));
 //        System.out.println(app.PeminjamanBuku("MEM0001", "BK0101", "00123"));
 //        System.out.println(app.PeminjamanBuku("MEM0002", "BK0101", "00123"));
 //        app.viewSemuaListAnggota();
-        Date tgl = new Date();
-        tgl.setDate(14);
-        tgl.setHours(10);
+//        Date tgl = new Date();
+//        tgl.setDate(14);
+//        tgl.setHours(10);
         
 //        Anggota a = (Anggota) app.getListAnggota().get(app.cariArrayAnggotaByKode("MEM0001"));
 //        Peminjaman p = (Peminjaman) a.getListPeminjaman().get(a.cariPeminjaman("00123"));
@@ -53,7 +53,8 @@ public class testing {
 //        System.out.println("stat cari buku by judul & penulis : "+app.cariBukuByJudulPenulis("Hello word", "123"));
 //        System.out.println("stat cari buku by judul & penulis : "+app.cariBukuByJudulPenulis("yoooy", "123"));
 //        System.out.println("stat cari buku by kode            : "+app.cariBukuByKode("BK1231"));
-        app.cariBuku("", "123");
+//        app.cariBuku("", "123");
+//        app.validasiAdmin("yoy");
         
 //        app.PeminjamanBuku(kodeAnggota, kodeBuku, kodePinjam);
 //        Date balik = new Date();
@@ -83,7 +84,7 @@ public class testing {
 //        System.out.println("denda sudah lunas? "+pinjam.getPengembalian().isDendaLunas());
 //        System.out.println("status denda : "+pinjam.getPengembalian().getDenda().getStatusDenda());
         
-    }
+//    }
         
 }
 //

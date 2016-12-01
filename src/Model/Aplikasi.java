@@ -16,7 +16,7 @@ public class Aplikasi {
         this.listAnggota = pendaftaran.getAnggota();
         this.listBuku = new ArrayList<Buku>();  }
     
-    //menu validasi admin
+    //menu validasi admin untuk mengakses menu-menu utama aplikasi
     public void validasiAdmin(String pass){
         if (pass.equals(passAdmin))
             System.out.println("Selamat datang admin");

@@ -6,10 +6,9 @@ import View.*;
 
 
 public class Driver {
-//    public static void main(String[] args) {
+    public static void main(String[] args) {
         Aplikasi app = new Aplikasi();
-//        controller con = new controller(app);
+        controller con = new controller(app);
         
-        
-//    }
+    }
 }
