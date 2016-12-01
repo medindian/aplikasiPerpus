@@ -6,16 +6,6 @@ public class Buku {
     
     private String judul, pengarang, penerbit, sinopsis, kodeBuku, thnTerbit;
     private int jumlahBuku;
-
-//    Buku(String judul, String pengarang, String penerbit, String kodeBuku, int jmlBuku) {
-//        this.judul = judul;
-//        this.pengarang = pengarang;
-//        this.penerbit = penerbit;
-//        this.kodeBuku = kodeBuku;
-//        this.sinopsis = "";
-//        this.thnTerbit = "";
-//        this.jumlahBuku = jmlBuku;
-//    }
     
     Buku(String judul, String pengarang, String penerbit, String kodeBuku, String sinopsis, int tahunTerbit, int jmlBuku) {
         this.judul = judul;
@@ -92,13 +82,19 @@ public class Buku {
     }
     
     public void viewInfoBuku(){
+        System.out.println("kode buku : "+getKodeBuku());
         System.out.println("Judul : "+getJudul());
         System.out.println("penulis : "+getPengarang());
         System.out.println("penerbit : "+getPenerbit());
         System.out.println("sinopsis : "+getSinopsis());
-        System.out.println("kode buku : "+getKodeBuku());
         System.out.println("thn terbit : "+getThnTerbit());
         System.out.println("jml buku : "+getJumlahBuku()+" buah");
+    }
+    
+    public void previewBuku(){
+        System.out.println("Judul : "+getJudul());
+        System.out.println("penulis : "+getPengarang());
+        System.out.println("sinopsis : "+getSinopsis());
     }
     
     public void cekTahun(int tahun){

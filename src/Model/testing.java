@@ -49,8 +49,11 @@ public class testing {
 //        System.out.println("stat array anggota : "+app.cariArrayAnggotaByKode("MEM0002"));
         //kode buku : "BK0312""BK0101""BK0912"
 //        System.out.println("stat array buku : "+app.cariArrayBukuByKode("BK10"));
-        System.out.println("stat cari buku by judul & penulis : "+app.cariBukuByJudulPenulis("Hello word", "dunno"));
-        System.out.println("stat cari buku by kode"+app.cariBukuByKode("BK1231"));
+//        System.out.println("stat cari buku by judul & penulis : "+app.cariBukuByJudulPenulis("Hello word", "wooow"));
+//        System.out.println("stat cari buku by judul & penulis : "+app.cariBukuByJudulPenulis("Hello word", "123"));
+//        System.out.println("stat cari buku by judul & penulis : "+app.cariBukuByJudulPenulis("yoooy", "123"));
+//        System.out.println("stat cari buku by kode            : "+app.cariBukuByKode("BK1231"));
+        app.cariBuku("", "123");
         
 //        app.PeminjamanBuku(kodeAnggota, kodeBuku, kodePinjam);
 //        Date balik = new Date();

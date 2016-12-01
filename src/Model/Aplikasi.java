@@ -6,30 +6,30 @@ import java.util.Date;
 
 public class Aplikasi {
     
-    private Pendaftaran pendaftaran;// = new Pendaftaran();
+    private Pendaftaran pendaftaran = new Pendaftaran();
     private static int kode = 0;
-    private ArrayList listBuku;
+    private ArrayList listBuku = new ArrayList<Buku>();
     private ArrayList listAnggota;
 
     public Aplikasi() {
-        this.pendaftaran = new Pendaftaran();
+//        this.pendaftaran = new Pendaftaran();
         this.listAnggota = pendaftaran.getAnggota();
-        this.listBuku = new ArrayList<Buku>();
+//        this.listBuku = new ArrayList<Buku>();
     }
     
     // yg akan membuat objek anggota
     public void tambahAnggota(String nama, String alamat, String noTelp, String email){
         this.kode = kode+1;
         int g = -2;
-        if (listAnggota.size() == 0){
+        if (listAnggota.isEmpty()){
             pendaftaran.daftarAnggotaBaru(nama, alamat, noTelp, email, this.kode);  }
         else{
             for (int i = 0; i < listAnggota.size(); i++){
                 Anggota a = (Anggota) listAnggota.get(i);
-                if (a.getNama() != nama || a.getEmail() != email)
+                if (!a.getNama().equals(nama) || !a.getEmail().equals(email))
                     g = i;
-                else {
-                    if (a.getNama() == nama)
+                else{
+                    if (a.getNama().equals(nama))
                         System.out.println("Nama sudah terdaftar");
                     else
                         System.out.println("E-mail sudah terdaftar");
@@ -55,23 +55,59 @@ public class Aplikasi {
         return listAnggota; }
     
     //untuk mencari array dari data sebuah buku berdasarkan judul atau penulis buku
-    public int cariArrayBukuByJudulPenulis(String judulBuku, String penulis){
+    public int cariArrayBukuByJudul(String judulBuku){
         Buku cari;
         int arrBuku = -1;
         for (int i = 0; i < listBuku.size(); i++){
             cari = (Buku) listBuku.get(i); //System.out.println(i);
-            if ( (cari.getJudul()).equals(judulBuku) || (cari.getPengarang()).equals(penulis) )
+            if ( (cari.getJudul()).equals(judulBuku) )
                 arrBuku = i;
         } return arrBuku;
     }
     
+    public void cariBukuByJudul(String judulBuku){
+        Buku cari;
+        int arrBuku = -1;
+        System.out.println("Hasil pencarian buku dengan judul "+judulBuku);
+        for (int i = 0; i < listBuku.size(); i++){
+            cari = (Buku) listBuku.get(i); //System.out.println(i);
+            if ( (cari.getJudul()).equals(judulBuku) ){
+                arrBuku = i;
+                cari.previewBuku();
+            }
+        }
+    }
+    
+        public int cariArrayBukuByPenulis(String penulis){
+        Buku cari;
+        int arrBuku = -1;
+        for (int i = 0; i < listBuku.size(); i++){
+            cari = (Buku) listBuku.get(i); //System.out.println(i);
+            if ( (cari.getPengarang()).equals(penulis) )
+                arrBuku = i;
+        } return arrBuku;
+    }
+
+    public void cariBukuByPenulis(String penulis){
+        Buku cari;
+        int arrBuku = -1;
+        System.out.println("Hasil pencarian buku dengan nama penulis "+penulis);
+        for (int i = 0; i < listBuku.size(); i++){
+            cari = (Buku) listBuku.get(i); //System.out.println(i);
+            if ( (cari.getPengarang()).contains(penulis) ){
+                arrBuku = i;
+                cari.previewBuku();
+            }
+        }
+    }
+        
     //untuk mencari status keberadaan data sebuah buku berdasarkan judul atau penulis buku
     public boolean cariBukuByJudulPenulis(String judulBuku, String penulis){
-        int ketemu = cariArrayBukuByJudulPenulis(judulBuku, penulis);
-        if (ketemu > -1)
+        int ketemu = cariArrayBukuByJudul(judulBuku);
+        int found = cariArrayBukuByPenulis(penulis);
+        if (ketemu > -1 || found > -1)
             return true;
-        return false;
-    }
+        return false;    }
     
     //untuk mencari array dari data sebuah buku berdasarkan kode buku
     public int cariArrayBukuByKode(String kodeBuku){
@@ -89,9 +125,24 @@ public class Aplikasi {
     //untuk mencari keberadaan data sebuah buku berdasarkan kode buku
     public boolean cariBukuByKode(String kodeBuku){
         int ketemu = cariArrayBukuByKode(kodeBuku);
-        if (ketemu != -1)
-            return true;
-        return false;
+        return ketemu != -1;
+    }
+    
+    public void cariBuku(String judul, String penulis){
+        if (judul.equals("") && penulis.equals(""))
+            System.out.println("Harap isi salah satu kotak dialog");
+        else{
+            boolean stat = cariBukuByJudulPenulis(judul, penulis);
+            if (stat == false)
+                System.out.println("Buku tidak tersedia");
+            else{
+                if(!judul.equals(""))
+                    cariBukuByJudul(judul);
+                else
+                    cariBukuByPenulis(penulis);
+            }
+                
+        }
     }
     
     //untuk mencari array dari data seorang anggota perpus berdasarkan kode anggota
@@ -109,13 +160,11 @@ public class Aplikasi {
     //untuk mencari keberadaan data anggota perpustakaan berdasarkan kode anggota
     public boolean cariAnggotaByKode(String kodeAnggota){
         int ketemu = cariArrayAnggotaByKode(kodeAnggota);
-        if (ketemu != -1)
-            return true;
-        return false;
+        return ketemu != -1;
     }
 
     public String PeminjamanBuku(String kodeAnggota, String kodeBuku, String kodePinjam){
-        String statement = "Error";
+        String statement = "";
         int arAgt = cariArrayAnggotaByKode(kodeAnggota);
         int arBk = cariArrayBukuByKode(kodeBuku);
         if (arBk == -1){
@@ -141,7 +190,7 @@ public class Aplikasi {
     }
     
     public void viewSemuaListAnggota(){
-        if (listAnggota.size() == 0){
+        if (listAnggota.isEmpty()){
             System.out.println("Belum ada anggota perpustakaan yang terdaftar");    }
         for (int i = 0; i < listAnggota.size(); i++){
             Anggota a = (Anggota) listAnggota.get(i);
@@ -152,7 +201,7 @@ public class Aplikasi {
     public void viewSemuaListBuku(){
         int no = 0;
         System.out.println("----------- Daftar Buku -----------");
-        if (listBuku.size() == 0){
+        if (listBuku.isEmpty()){
             System.out.println("Belum ada buku yang terdaftar");    }
         for (int i = 0; i < listBuku.size(); i++){
             Buku bk = (Buku) listBuku.get(i);
