@@ -23,14 +23,13 @@ public class testing {
         
         Aplikasi app = new Aplikasi();
         app.tambahAnggota("Hello", "World", "0123124", "ikeren@mail.com");
-//        app.tambahAnggota("Lala", "Test", "0123124", "yoho@mail.com");
+        app.tambahAnggota("Lala", "Test", "0123124", "yoho@mail.com");
 //        app.tambahAnggota("D", "pasir emas", "01388321", "yoho@mail.com");
 //        app.viewSemuaListAnggota();
         app.tambahBuku("Hello word", "123", "bdg", "BK0101", "one upon a time", 2001, 5);
         app.tambahBuku("Buku 2", "penulis 2", "bdg", "BK0312", "", 2005, 2);
         app.tambahBuku("Buku 3", "penulis 3", "jkt", "BK0912", "", 2002, 4);
-//        app.viewSemuaListBuku();
-        
+        app.viewSemuaListBuku();
 //        System.out.println(app.PeminjamanBuku("MEM0003", "BK0101", "00123"));
         System.out.println(app.PeminjamanBuku("MEM0001", "BK0101", "00123"));
 //        System.out.println(app.PeminjamanBuku("MEM0002", "BK0101", "00123"));
@@ -41,10 +40,18 @@ public class testing {
         
         Anggota a = (Anggota) app.getListAnggota().get(app.cariArrayAnggotaByKode("MEM0001"));
         Peminjaman p = (Peminjaman) a.getListPeminjaman().get(a.cariPeminjaman("00123"));
-        p.viewTglPinjam();
-
-        System.out.println("Tgl Balik : "+tgl.toString());
-        app.PengembalianBuku("MEM0001", "00123", tgl);
+//        p.viewTglPinjam();
+//        System.out.println("Tgl Balik : "+tgl.toString());
+//        app.PengembalianBuku("MEM0001", "00123");
+//        System.out.println("stat balikin buku : "+app.PengembalianBuku("MEM0001", "00123"));
+//        app.BayarDenda("MEM0001", "00123", 10000);
+//        System.out.println("stat anggota : "+app.cariAnggotaByKode("MEM0001")); //("MEM0012"));
+//        System.out.println("stat array anggota : "+app.cariArrayAnggotaByKode("MEM0002"));
+        //kode buku : "BK0312""BK0101""BK0912"
+//        System.out.println("stat array buku : "+app.cariArrayBukuByKode("BK10"));
+        System.out.println("stat cari buku by judul & penulis : "+app.cariBukuByJudulPenulis("Hello word", "dunno"));
+        System.out.println("stat cari buku by kode"+app.cariBukuByKode("BK1231"));
+        
 //        app.PeminjamanBuku(kodeAnggota, kodeBuku, kodePinjam);
 //        Date balik = new Date();
 //        balik.setDate(30);

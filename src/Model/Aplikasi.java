@@ -21,17 +21,19 @@ public class Aplikasi {
     public void tambahAnggota(String nama, String alamat, String noTelp, String email){
         this.kode = kode+1;
         int g = -2;
-//        String statement = "";
         if (listAnggota.size() == 0){
             pendaftaran.daftarAnggotaBaru(nama, alamat, noTelp, email, this.kode);  }
-        else {
+        else{
             for (int i = 0; i < listAnggota.size(); i++){
                 Anggota a = (Anggota) listAnggota.get(i);
-                if (a.getNama() == nama || a.getEmail() == email){
-                    g = -1;  }
-                else{
+                if (a.getNama() != nama || a.getEmail() != email)
                     g = i;
-                    System.out.println("Nama atau email sudah digunakan");  }
+                else {
+                    if (a.getNama() == nama)
+                        System.out.println("Nama sudah terdaftar");
+                    else
+                        System.out.println("E-mail sudah terdaftar");
+                    g = -1; }
             }
             if (g > -1)
                 pendaftaran.daftarAnggotaBaru(nama, alamat, noTelp, email, this.kode);
@@ -57,17 +59,18 @@ public class Aplikasi {
         Buku cari;
         int arrBuku = -1;
         for (int i = 0; i < listBuku.size(); i++){
-            cari = (Buku) listBuku.get(i);
-            if ( (cari.getJudul()).equals(judulBuku) || (cari.getPengarang()).equals(penulis) ){
-                arrBuku = i;    }
-        }
-        return arrBuku;
+            cari = (Buku) listBuku.get(i); //System.out.println(i);
+            if ( (cari.getJudul()).equals(judulBuku) || (cari.getPengarang()).equals(penulis) )
+                arrBuku = i;
+        } return arrBuku;
     }
     
     //untuk mencari status keberadaan data sebuah buku berdasarkan judul atau penulis buku
     public boolean cariBukuByJudulPenulis(String judulBuku, String penulis){
         int ketemu = cariArrayBukuByJudulPenulis(judulBuku, penulis);
-        return ketemu != -1;
+        if (ketemu > -1)
+            return true;
+        return false;
     }
     
     //untuk mencari array dari data sebuah buku berdasarkan kode buku
@@ -86,7 +89,9 @@ public class Aplikasi {
     //untuk mencari keberadaan data sebuah buku berdasarkan kode buku
     public boolean cariBukuByKode(String kodeBuku){
         int ketemu = cariArrayBukuByKode(kodeBuku);
-        return ketemu != -1;
+        if (ketemu != -1)
+            return true;
+        return false;
     }
     
     //untuk mencari array dari data seorang anggota perpus berdasarkan kode anggota
@@ -104,7 +109,9 @@ public class Aplikasi {
     //untuk mencari keberadaan data anggota perpustakaan berdasarkan kode anggota
     public boolean cariAnggotaByKode(String kodeAnggota){
         int ketemu = cariArrayAnggotaByKode(kodeAnggota);
-        return ketemu != -1;
+        if (ketemu != -1)
+            return true;
+        return false;
     }
 
     public String PeminjamanBuku(String kodeAnggota, String kodeBuku, String kodePinjam){
@@ -128,7 +135,7 @@ public class Aplikasi {
                 long jmlBukuSekarang = bk.getJumlahBuku(); // System.out.println("jmlBukuAfter : "+jmlBukuSekarang);
                 statement = "Dokumentasi peminjaman sudah tersimpan";
             } else
-                statement = "dokumentasi peminjaman gagal disimpan";
+                statement = "Dokumentasi peminjaman gagal disimpan";
         }
         return statement;
     }
@@ -144,26 +151,29 @@ public class Aplikasi {
     
     public void viewSemuaListBuku(){
         int no = 0;
+        System.out.println("----------- Daftar Buku -----------");
         if (listBuku.size() == 0){
             System.out.println("Belum ada buku yang terdaftar");    }
         for (int i = 0; i < listBuku.size(); i++){
             Buku bk = (Buku) listBuku.get(i);
             no = no + 1;
-            System.out.println(no+". "+bk.getJudul());
+            System.out.println(no+". Judul : "+bk.getJudul());
+            System.out.println("   Penulis : "+bk.getPengarang());
         }
+        System.out.println("-----------------------------------");
     }
     
-    public String PengembalianBuku(String kodeAnggota, String kodePeminjaman, Date tglKembaliinBuku){
+    public String PengembalianBuku(String kodeAnggota, String kodePeminjaman){
+        Date tglBalik = new Date();
         String statement = "Data peminjaman tidak ditemukan";
         boolean cek = false;
         Anggota peminjam;
-        Pengembalian kegKembaliinBuku = new Pengembalian();
         int statA = cariArrayAnggotaByKode(kodeAnggota);
         if (statA == -1){
             statement = "Anda salah memasukkan kode anggota";
         } else {
             peminjam = (Anggota) listAnggota.get(statA);
-            cek = peminjam.melakukanPengembalian(kodePeminjaman, tglKembaliinBuku);
+            cek = peminjam.melakukanPengembalian(kodePeminjaman, tglBalik);
             if (cek == true)
                 statement = "Dokumentasi pengembalian buku berhasil disimpan";
             else
@@ -172,27 +182,23 @@ public class Aplikasi {
         return statement;
     }
     
-    public String BayarDenda(String kodeAnggota, String kodePeminjaman, long dendaDibayar){
-        String statement = "Data peminjaman tidak ditemukan";
+    public boolean BayarDenda(String kodeAnggota, String kodePeminjaman, long dendaDibayar){
         boolean cek = false;
         Anggota peminjam;
         int statA = cariArrayAnggotaByKode(kodeAnggota);
         if (statA == -1){
-            statement = "Anda salah memasukkan kode anggota";
+            System.out.println("Anda salah memasukkan kode anggota");
         } else {
             peminjam = (Anggota) listAnggota.get(statA);
             cek = peminjam.bayarDenda(kodePeminjaman, dendaDibayar);
-            if (cek == true)
-                statement = "Dokumentasi denda berhasil disimpan";
-            else
-                statement = "Dokumentasi denda berhasil gagal disimpan";
+            System.out.println("Dokumentasi denda berhasil disimpan");
         }
-        return statement;
+        return cek;
     }
     
-    public String convertDateToString(Date tgl){
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-        return sdf.format(tgl);
-    }
+//    public String convertDateToString(Date tgl){
+//        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+//        return sdf.format(tgl);
+//    }
     
 }

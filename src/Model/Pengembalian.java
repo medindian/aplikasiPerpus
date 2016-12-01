@@ -93,22 +93,24 @@ public class Pengembalian {
         setBanyakHariPinjam(tglPinjam, tglKembali);
         if(isBayarDenda(tglDd, tglKembali) == true){
             this.denda.setBanyakKeterlambatan(kalkulatorPenghitungHari(tglDd, tglKembali));
-            System.out.println("Banyak hari terlambat mengembalikan buku : "+denda.getBanyakKeterlambatan()+" hari");
+            System.out.println("Banyak hari terlambat : "+denda.getBanyakKeterlambatan()+" hari");
             long dendaYgHrsDibayar = this.denda.hitungTotalDenda();
             this.denda.setTotalDenda(dendaYgHrsDibayar);
         }
-        System.out.println("Denda anda adalah Rp "+denda.getTotalDenda());
+//        System.out.println("Denda anda adalah Rp "+denda.getTotalDenda());
     }
     
     public void pembayaranDenda(long bayar){
-        long dendaYgHrsDibayar = this.denda.getTotalDenda();
-        System.out.println("denda sekarang : "+dendaYgHrsDibayar);
+        long dendaYgHrsDibayar = this.denda.getTotalDenda();    // System.out.println("denda sekarang : "+dendaYgHrsDibayar);
         long kembalian = 0;
         long dendaTerbayar = dendaYgHrsDibayar-bayar;
         denda.setTotalDenda(dendaTerbayar);
         if (dendaTerbayar <= 0){
             kembalian = dendaTerbayar*-1;
-            System.out.println("Denda lunas dan anda mendapat kembalian Rp "+kembalian);
+            if (kembalian > 0)
+                System.out.println("Denda anda lunas dan anda mendapat kembalian Rp "+kembalian);
+            else
+                System.out.println("Denda anda lunas");
             denda.setStatusDenda(false);
             dendaTerbayar = 0;
         }
