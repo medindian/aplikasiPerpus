@@ -1,8 +1,7 @@
 package Model;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+//import java.text.*;
+import java.util.*;
 
 public class Aplikasi {
     
@@ -10,11 +9,20 @@ public class Aplikasi {
     private static int kode = 0;
     private ArrayList listBuku;// = new ArrayList<Buku>();
     private ArrayList listAnggota;
+    private String passAdmin = "123456";
 
     public Aplikasi() {
         this.pendaftaran = new Pendaftaran();
         this.listAnggota = pendaftaran.getAnggota();
         this.listBuku = new ArrayList<Buku>();  }
+    
+    //menu validasi admin
+    public void validasiAdmin(String pass){
+        if (pass.equals(passAdmin))
+            System.out.println("Selamat datang admin");
+        else
+            System.out.println("Password anda salah");
+    }
     
     //menu mendaftarkan anggota baru
     public void tambahAnggota(String nama, String alamat, String noTelp, String email){
