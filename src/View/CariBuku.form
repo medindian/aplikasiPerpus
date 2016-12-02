@@ -17,47 +17,45 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" min="-2" pref="349" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Component id="btnCari" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="labelPencarianBuku" min="-2" pref="94" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="labelPencarianMenurut" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="ComboBoxPencarianMenurut" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnKembali" min="-2" max="-2" attributes="0"/>
+                  <Component id="judul" alignment="0" min="-2" pref="213" max="-2" attributes="0"/>
                   <Component id="labelDataBuku" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="txtPencarian" alignment="0" min="-2" pref="192" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="labelAsasPecarian" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="dasarPencarian" min="-2" pref="145" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="btnCari" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPencarian" alignment="1" pref="349" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="41" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="labelPencarianBuku" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="judul" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="labelPencarianMenurut" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ComboBoxPencarianMenurut" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelAsasPecarian" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dasarPencarian" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="txtPencarian" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnCari" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnCari" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="labelDataBuku" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="140" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="144" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnKembali" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -80,7 +78,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="TAreaDataBuku">
+        <Component class="javax.swing.JTextArea" name="txtDtBuku">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -88,7 +86,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JComboBox" name="ComboBoxPencarianMenurut">
+    <Component class="javax.swing.JComboBox" name="dasarPencarian">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -100,22 +98,24 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelPencarianBuku">
+    <Component class="javax.swing.JLabel" name="judul">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="11" style="1"/>
+          <Font name="Tahoma" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Pencarian Buku"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelPencarianMenurut">
+    <Component class="javax.swing.JLabel" name="labelAsasPecarian">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pencarian Menurut :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPencarian">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnKembali">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pencarian Menurut..."/>
+        <Property name="text" type="java.lang.String" value="Kembali"/>
       </Properties>
     </Component>
   </SubComponents>

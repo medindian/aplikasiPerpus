@@ -1,6 +1,9 @@
 package View;
 
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
 
 public class CariBuku extends javax.swing.JPanel {
 
@@ -15,78 +18,80 @@ public class CariBuku extends javax.swing.JPanel {
         btnCari = new javax.swing.JButton();
         labelDataBuku = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TAreaDataBuku = new javax.swing.JTextArea();
-        ComboBoxPencarianMenurut = new javax.swing.JComboBox();
-        labelPencarianBuku = new javax.swing.JLabel();
-        labelPencarianMenurut = new javax.swing.JLabel();
+        txtDtBuku = new javax.swing.JTextArea();
+        dasarPencarian = new javax.swing.JComboBox();
+        judul = new javax.swing.JLabel();
+        labelAsasPecarian = new javax.swing.JLabel();
         txtPencarian = new javax.swing.JTextField();
+        btnKembali = new javax.swing.JButton();
 
         btnCari.setText("Cari");
 
         labelDataBuku.setText("Data Buku :");
 
-        TAreaDataBuku.setColumns(20);
-        TAreaDataBuku.setRows(5);
-        jScrollPane1.setViewportView(TAreaDataBuku);
+        txtDtBuku.setColumns(20);
+        txtDtBuku.setRows(5);
+        jScrollPane1.setViewportView(txtDtBuku);
 
-        ComboBoxPencarianMenurut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dasarPencarian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        labelPencarianBuku.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        labelPencarianBuku.setText("Pencarian Buku");
+        judul.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        judul.setText("Pencarian Buku");
 
-        labelPencarianMenurut.setText("Pencarian Menurut :");
+        labelAsasPecarian.setText("Pencarian Menurut :");
 
-        txtPencarian.setText("Pencarian Menurut...");
+        btnKembali.setText("Kembali");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnCari)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(labelPencarianBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(98, 98, 98))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(labelPencarianMenurut)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(ComboBoxPencarianMenurut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnKembali)
+                    .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelDataBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelAsasPecarian)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dasarPencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCari, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtPencarian, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(0, 51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelPencarianBuku)
                 .addGap(18, 18, 18)
+                .addComponent(judul)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelPencarianMenurut)
-                    .addComponent(ComboBoxPencarianMenurut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelAsasPecarian)
+                    .addComponent(dasarPencarian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPencarian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCari)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelDataBuku)
+                .addComponent(btnCari)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(labelDataBuku)
+                .addGap(8, 8, 8)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnKembali)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox ComboBoxPencarianMenurut;
-    private javax.swing.JTextArea TAreaDataBuku;
     private javax.swing.JButton btnCari;
+    private javax.swing.JButton btnKembali;
+    private javax.swing.JComboBox dasarPencarian;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel judul;
+    private javax.swing.JLabel labelAsasPecarian;
     private javax.swing.JLabel labelDataBuku;
-    private javax.swing.JLabel labelPencarianBuku;
-    private javax.swing.JLabel labelPencarianMenurut;
+    private javax.swing.JTextArea txtDtBuku;
     private javax.swing.JTextField txtPencarian;
     // End of variables declaration//GEN-END:variables
 
@@ -95,8 +100,22 @@ public class CariBuku extends javax.swing.JPanel {
     
     public Object getBtnCari(){
         return btnCari;    }
+
+    public Object getBtnKembali() {
+        return btnKembali;  }
+
+    public int getDasarPencarian() {
+        return dasarPencarian.getSelectedIndex()+1;   }
+
+    public void setTxtDtBuku(String dataBuku) {
+        this.txtDtBuku.setText(dataBuku);    }
+    
+//    public void setListBuku(String list[]){
+//        this.listBuku.setListData(list);    }
     
     public void addListener(ActionListener e){
-        btnCari.addActionListener(e);    }
+        btnCari.addActionListener(e);
+        btnKembali.addActionListener(e);
+    }
 
 }

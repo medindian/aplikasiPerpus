@@ -1,8 +1,8 @@
 package Controller;
 import java.awt.event.*;
-import java.io.IOException;
-import java.util.Date;
-import javax.swing.JOptionPane;
+//import java.io.IOException;
+//import java.util.Date;
+//import javax.swing.JOptionPane;
 import Model.*;
 import View.*;
 import javax.swing.JPanel;
@@ -64,14 +64,19 @@ public class controller extends MouseAdapter implements ActionListener{
         Object source = ae.getSource();
         if (source.equals(view.getBtnExit())) {
 //            try {
-//                model.saveEmployee();
+//                model.savePendaftaran();
+//                model.saveBuku(); 
+//                model.saveAnggota(); 
+//                model.savePeminjaman(); 
+//                model.savePengembalian();
+//                model.saveDenda();
 //            } catch (IOException ex) {
 //                view.viewErrorMsg(ex.getMessage());
 //            }
             System.exit(0);
         }
         if (source.equals("0")) {
-            //HalamanAwal ha
+            //HalamanAwal ha 0
             if (source.equals(ha.getBtnCariBuku())){
                 currentView = "1";
                 view.getCardLayout().show(mainPanel, currentView);
@@ -80,27 +85,113 @@ public class controller extends MouseAdapter implements ActionListener{
                 view.getCardLayout().show(mainPanel, currentView);
             }
         } else if (source.equals("1")) {
-            //MainMenu mm
+            //MainMenu mm 1
             if (source.equals(mm.getBtnTambahAnggota())){
+                currentView = "3";
+                view.getCardLayout().show(mainPanel, currentView);
             } else if (source.equals(mm.getBtnPeminjaman())){
+                currentView = "4";
+                view.getCardLayout().show(mainPanel, currentView);
             } else if (source.equals(mm.getBtnPengembalian())){
+                currentView = "5";
+                view.getCardLayout().show(mainPanel, currentView);
             } else if (source.equals(mm.getBtnPengadaan())){
+                currentView = "6";
+                view.getCardLayout().show(mainPanel, currentView);
             }
         } else if (source.equals("2")) {
-            //CariBuku cr
+            //CariBuku cr 2
             if (source.equals(cr.getBtnCari())){
+//                try {
+//                    model.loadBuku();
+//                } catch (IOException ex) {
+//                    view.viewErrorMsg(ex.getMessage());
+//                }
+                String txtCari = cr.getTxtPencarian();
+                int dsrCariBuku = cr.getDasarPencarian();
+                int list = model.cariBuku(txtCari, dsrCariBuku).size();
+                int i = 0;
+                while (i < list){
+                    Buku bk = (Buku) model.cariBuku(txtCari, dsrCariBuku).get(i);
+                    cr.setTxtDtBuku(bk.previewBuku());
+                }
+            } else if (source.equals(cr.getBtnKembali())){
+                currentView = "0";
+                view.getCardLayout().show(mainPanel, currentView);
             }
         } else if (source.equals("3")) {
-            //PendaftaranAnggota pa
+            //PendaftaranAnggota pa 3
             if (source.equals(pa.getBtnTambah())){
+                String nama = pa.getTxtNama();
+                String alamat = pa.getTxtAlamat();
+                String noTelp = pa.getTxtNoTelp();
+                String email = pa.getTxtEmail();
+                model.tambahAnggota(nama, alamat, noTelp, email);
+                int arAg = model.cariAnggota(nama, alamat, noTelp, email);
+                pa.setTxtNoAnggota(model.getListAnggota().get(arAg).getKodeAnggota());
+//                try {
+//                    model.saveAnggota(); 
+//                    model.savePendaftaran();
+//                } catch (IOException ex) {
+//                    view.viewErrorMsg(ex.getMessage());
+//                }
             } else if (source.equals(pa.getBtnBack())){
+                currentView = "1";
+                view.getCardLayout().show(mainPanel, currentView);
             }
         } else if (source.equals("4")) {
-            //PeminjamanBuku pj
+            //PeminjamanBuku pj 4
+            if(source.equals(pj.getButtonTambah())){
+//                try {
+//                    model.savePeminjaman();
+//                } catch (IOException ex) {
+//                    view.viewErrorMsg(ex.getMessage());
+//                }
+            } else if (source.equals(pj.getBtnKembali())){
+                currentView = "1";
+                view.getCardLayout().show(mainPanel, currentView);
+            }
         } else if (source.equals("5")) {
-            //PengembalianBuku pg
+            //PengembalianBuku pg 5
+            if (source.equals(pg.getBtnSimpanPengembalian())){
+//                try {
+//                    model.loadPeminjaman();
+//                } catch (IOException ex) {
+//                    view.viewErrorMsg(ex.getMessage());
+//                }
+                String kdAnggota = pg.getTxtKdAnggota();
+                String kdPinjam = pg.getTxtKdPeminjaman();
+//                try {
+//                    model.savePengembalian();
+//                } catch (IOException ex) {
+//                    view.viewErrorMsg(ex.getMessage());
+//                }
+                
+            } else if(source.equals(pg.getBtnKembali())){
+                currentView = "1";
+                view.getCardLayout().show(mainPanel, currentView);
+            }
         } else if (source.equals("6")) {
-            //PengadaanBuku pbk
+            //PengadaanBuku pbk 6
+            if (source.equals(pbk.getBtnBack())){
+                currentView = "1";
+                view.getCardLayout().show(mainPanel, currentView);
+            } else if (source.equals(pbk.getBtnTambah())){
+                String kdBuku = pbk.getTxtKdBuku();
+                String judul = pbk.getTxtJudul();
+                String pengarang = pbk.getTxtPengarang();
+                String penerbit = pbk.getTxtPenerbit();
+                int thnTerbit = Integer.parseInt(pbk.getTxtThnTerbit());
+                String sinopsis = pbk.getTxtSinopsis();
+                int jmlBuku = pbk.getTxtJmlBuku();
+//                judul, pengarang, penerbit, kodeBuku, sinopsis, tahunTerbit, jmlBuku
+                model.tambahBuku(judul, pengarang, penerbit, kdBuku, sinopsis, thnTerbit, jmlBuku);
+//                try {
+//                    model.saveBuku();
+//                } catch (IOException ex) {
+//                    view.viewErrorMsg(ex.getMessage());
+//                }
+            }
         }
     }
     

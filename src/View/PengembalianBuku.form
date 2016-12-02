@@ -16,35 +16,38 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelKodeAnggota" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
-                          <Component id="labelPengembalian" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
-                          <Component id="TFieldKodeAnggota" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelKodeBuku" min="-2" pref="87" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="97" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="btnSimpanPengembalian" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelKodeAnggota" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
+                                      <Component id="txtKdAnggota" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelKodeBuku" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtKdPeminjaman" min="-2" pref="199" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <Component id="TFieldKodeBuku" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelDataPeminjaman" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnKembali" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="buttonCari" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelDataPeminjaman" min="-2" pref="93" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+              <Component id="labelPengembalian" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,22 +56,24 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="labelPengembalian" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelKodeAnggota" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelKodeBuku" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="TFieldKodeAnggota" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TFieldKodeBuku" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtKdAnggota" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtKdPeminjaman" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="buttonCari" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnSimpanPengembalian" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Component id="labelDataPeminjaman" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="146" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="149" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnKembali" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -82,27 +87,21 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelKodeBuku">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kode Buku :"/>
+        <Property name="text" type="java.lang.String" value="Kode Peminjaman :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TFieldKodeAnggota">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="kodeAnggota"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="txtKdAnggota">
     </Component>
-    <Component class="javax.swing.JTextField" name="TFieldKodeBuku">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="kodeBuku"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="txtKdPeminjaman">
     </Component>
-    <Component class="javax.swing.JButton" name="buttonCari">
+    <Component class="javax.swing.JButton" name="btnSimpanPengembalian">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cari"/>
+        <Property name="text" type="java.lang.String" value="Simpan"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelDataPeminjaman">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Data Peminjaman :"/>
+        <Property name="text" type="java.lang.String" value="Hasil :"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -112,7 +111,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="TAreaDataPeminjaman">
+        <Component class="javax.swing.JTextArea" name="txtHasilSimpan">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -123,9 +122,14 @@
     <Component class="javax.swing.JLabel" name="labelPengembalian">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="11" style="1"/>
+          <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Pengembalian Buku"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnKembali">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Kembali"/>
       </Properties>
     </Component>
   </SubComponents>

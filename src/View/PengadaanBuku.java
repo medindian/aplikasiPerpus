@@ -4,6 +4,8 @@ package View;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class PengadaanBuku extends javax.swing.JPanel implements View{
     public PengadaanBuku() {
@@ -15,61 +17,66 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        back = new javax.swing.JButton();
+        btnKembali = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        tahunTerbit = new javax.swing.JTextField();
+        txtThnTerbit = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        kodeBuku = new javax.swing.JTextField();
+        txtKdBuku = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jumlah = new javax.swing.JTextField();
+        txtJmlBuku = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        sinopsis = new javax.swing.JTextArea();
-        judul = new javax.swing.JTextField();
+        txtSinopsis = new javax.swing.JTextArea();
+        txtJudul = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        tambah = new javax.swing.JButton();
-        pengarang = new javax.swing.JTextField();
+        txtAddBuku = new javax.swing.JButton();
+        txtPengarang = new javax.swing.JTextField();
+        txtPenerbit = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
-        back.setText("Back");
+        btnKembali.setText("Back");
 
         jLabel4.setText("Kode Buku :");
 
-        jLabel5.setText("Tahun Terbit");
+        jLabel5.setText("Tahun Terbit :");
 
         jLabel6.setText("Jumlah :");
 
-        jumlah.addActionListener(new java.awt.event.ActionListener() {
+        txtJmlBuku.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jumlahActionPerformed(evt);
+                txtJmlBukuActionPerformed(evt);
             }
         });
-        jumlah.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtJmlBuku.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jumlahKeyTyped(evt);
+                txtJmlBukuKeyTyped(evt);
             }
         });
 
-        jLabel1.setText("Mendaftarkan Buku");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Mendaftarkan Anggota Baru");
 
         jLabel7.setText("Sinopsis :");
 
         jLabel2.setText("Judul :");
 
-        sinopsis.setColumns(20);
-        sinopsis.setRows(5);
-        jScrollPane1.setViewportView(sinopsis);
+        txtSinopsis.setColumns(20);
+        txtSinopsis.setRows(5);
+        jScrollPane1.setViewportView(txtSinopsis);
 
         jLabel3.setText("Pengarang :");
 
-        tambah.setText("Tambah");
+        txtAddBuku.setText("Tambah");
 
-        pengarang.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtPengarang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                pengarangKeyTyped(evt);
+                txtPengarangKeyTyped(evt);
             }
         });
+
+        jLabel8.setText("Penerbit :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,94 +85,105 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel6)
-                        .addComponent(judul)
-                        .addComponent(pengarang)
-                        .addComponent(kodeBuku)
-                        .addComponent(jumlah, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
-                    .addComponent(jLabel1)
-                    .addComponent(tahunTerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtAddBuku))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)
+                                .addComponent(txtJudul)
+                                .addComponent(txtPengarang)
+                                .addComponent(txtKdBuku)
+                                .addComponent(txtJmlBuku, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+                            .addComponent(txtThnTerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(txtPenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tambah))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(177, 177, 177)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pengarang, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(kodeBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(1, 1, 1)
+                                .addComponent(txtKdBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2)
+                                .addGap(1, 1, 1)
+                                .addComponent(txtJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3)
+                                .addGap(1, 1, 1)
+                                .addComponent(txtPengarang, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tahunTerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jumlah))
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(1, 1, 1)
+                        .addComponent(txtThnTerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(tambah)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel8)
+                        .addGap(1, 1, 1)
+                        .addComponent(txtPenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtJmlBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAddBuku)
+                    .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jumlahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlahActionPerformed
+    private void txtJmlBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJmlBukuActionPerformed
 //au
-    }//GEN-LAST:event_jumlahActionPerformed
+    }//GEN-LAST:event_txtJmlBukuActionPerformed
 
-    private void jumlahKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jumlahKeyTyped
+    private void txtJmlBukuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtJmlBukuKeyTyped
         char c = evt.getKeyChar();
         if (!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE)) {
             JOptionPane.showMessageDialog(null,"Hanya untuk inputan Angka saja !");
             evt.consume();
         }
-    }//GEN-LAST:event_jumlahKeyTyped
+    }//GEN-LAST:event_txtJmlBukuKeyTyped
 
-    private void pengarangKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pengarangKeyTyped
+    private void txtPengarangKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPengarangKeyTyped
         char c = evt.getKeyChar();
         if (!(Character.isLetter(c) || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE)) {
             JOptionPane.showMessageDialog(null,"Hanya untuk inputan Huruf saja ! ");
             evt.consume();
         }
-    }//GEN-LAST:event_pengarangKeyTyped
+    }//GEN-LAST:event_txtPengarangKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton back;
+    private javax.swing.JButton btnKembali;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -173,45 +191,53 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField judul;
-    private javax.swing.JTextField jumlah;
-    private javax.swing.JTextField kodeBuku;
-    private javax.swing.JTextField pengarang;
-    private javax.swing.JTextArea sinopsis;
-    private javax.swing.JTextField tahunTerbit;
-    private javax.swing.JButton tambah;
+    private javax.swing.JButton txtAddBuku;
+    private javax.swing.JTextField txtJmlBuku;
+    private javax.swing.JTextField txtJudul;
+    private javax.swing.JTextField txtKdBuku;
+    private javax.swing.JTextField txtPenerbit;
+    private javax.swing.JTextField txtPengarang;
+    private javax.swing.JTextArea txtSinopsis;
+    private javax.swing.JTextField txtThnTerbit;
     // End of variables declaration//GEN-END:variables
 
     public Object getBtnTambah(){
-        return tambah;  }
+        return txtAddBuku;  }
     
     public Object getBtnBack(){
-        return back;    }
+        return btnKembali;    }
     
-    public String getjudul() {
-        return judul.getText(); }
+    public String getTxtJudul() {
+        return txtJudul.getText(); }
     
-    public short getjumlah() {
+    public short getTxtJmlBuku() {
         short i ;
-        if(jumlah.getText() != ""){
-            i = Short.parseShort(jumlah.getText());
-        }else { i = 0;}
+        if(txtJmlBuku.getText() != ""){
+            i = Short.parseShort(txtJmlBuku.getText());
+        } else { i = 0;}
         return i;   }
     
-    public String getpengarang() {
-        return pengarang.getText(); }
+    public String getTxtPengarang() {
+        return txtPengarang.getText(); }
     
-    public String gettahunterbit() {
-        return tahunTerbit.getText();   }
+    public String getTxtThnTerbit() {
+        return txtThnTerbit.getText();   }
     
-    public String getkodebuku() {
-        return kodeBuku.getText();  }
-    
+    public String getTxtKdBuku() {
+        return txtKdBuku.getText();  }
+
+    public String getTxtSinopsis() {
+        return txtSinopsis.getText();    }
+
+    public String getTxtPenerbit() {
+        return txtPenerbit.getText();    }
+        
     @Override
     public void addListener(ActionListener e) {
-        tambah.addActionListener(e);
-        back.addActionListener(e);  }
+        txtAddBuku.addActionListener(e);
+        btnKembali.addActionListener(e);  }
     
     @Override
     public void viewErrorMsg(String errorMsg) {

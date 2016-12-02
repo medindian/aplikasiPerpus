@@ -91,10 +91,10 @@ public class Buku {
         System.out.println("jml buku : "+getJumlahBuku()+" buah");
     }
     
-    public void previewBuku(){
-        System.out.println("Judul : "+getJudul());
-        System.out.println("penulis : "+getPengarang());
-        System.out.println("sinopsis : "+getSinopsis());
+    public String previewBuku(){
+        return ("Judul : "+getJudul()+"\n"+
+                "penulis : "+getPengarang()+"\n"+
+                "sinopsis : "+getSinopsis());
     }
     
     public void cekTahun(int tahun){

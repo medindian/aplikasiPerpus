@@ -46,6 +46,17 @@ public class Aplikasi {
         System.out.println("Pendaftaran berhasil dilakukan");
         this.listAnggota = pendaftaran.getAnggota();    }
     
+    public int cariAnggota(String nama, String alamat, String noTelp, String email){
+        int dpt = -1;        
+        for (int i = 0; i < listAnggota.size(); i++){
+            Anggota ag = (Anggota) listAnggota.get(i);
+            if (ag.getNama().equals(nama) && ag.getAlamat().equals(alamat) && ag.getNoTelp().equals(noTelp)
+                    && ag.getEmail().equals(email))
+                dpt = i;
+        }
+        return dpt;
+    }
+    
     //menu pengadaan buku
     public void tambahBuku(String judul, String pengarang, String penerbit, String kodeBuku, String sinopsis, int tahunTerbit, int jmlBuku){
         listBuku.add(new Buku(judul, pengarang, penerbit, kodeBuku, sinopsis, tahunTerbit, jmlBuku));   }
@@ -59,24 +70,23 @@ public class Aplikasi {
         return listAnggota; }
     
     //untuk mencari array dari data sebuah buku berdasarkan judul buku
-    public int cariArrayBukuByJudul(String judulBuku){
-        Buku cari;
-        int arrBuku = -1;
-        for (int i = 0; i < listBuku.size(); i++){
-            cari = (Buku) listBuku.get(i); //System.out.println(i);
-            String words[] = cari.getJudul().split(" ");
-            int j = 0;
-//            System.out.println(words.length);
-            while (j != words.length){
-//                System.out.println(words[j].toString());
-                if (words[j].equals(judulBuku))
-                    arrBuku = i;
-                j = j + 1;  }
-        } return arrBuku;   }
+//    public int cariArrayBukuByJudul(String judulBuku){
+//        Buku cari;
+//        int arrBuku = -1;
+//        for (int i = 0; i < listBuku.size(); i++){
+//            cari = (Buku) listBuku.get(i); //System.out.println(i);
+//            String words[] = cari.getJudul().split(" ");
+//            int j = 0;
+//            while (j != words.length){
+//                if (words[j].equals(judulBuku))
+//                    arrBuku = i;
+//                j = j + 1;  }
+//        } return arrBuku;   }
     
     //untuk mencari buku berdasarkan judul buku
-    public void cariBukuByJudul(String judulBuku){
+    public ArrayList cariBukuByJudul(String judulBuku){
         Buku cari;
+        ArrayList arBuku = new ArrayList<Buku>();
         int arrBuku = -1;
         boolean stat = false;
         System.out.println("Hasil pencarian buku dengan judul "+judulBuku);
@@ -87,28 +97,31 @@ public class Aplikasi {
             while (j != words.length){
                 if (words[j].equals(judulBuku)){
                     stat = true;
-                    cari.previewBuku();
+                    arBuku.add(cari);
+                    //cari.previewBuku();
                 } j = j + 1;    }   }
         if (stat == false)
-            System.out.println("Buku tidak tersedia");    }
+            System.out.println("Buku tidak tersedia");
+        return arBuku;    }
     
     //untuk mencari array dari buku yg memiliki nama penulis tertentu
-    public int cariArrayBukuByPenulis(String penulis){
-        Buku cari;
-        int arrBuku = -1;
-        for (int i = 0; i < listBuku.size(); i++){
-            cari = (Buku) listBuku.get(i); //System.out.println(i);
-            String words[] = cari.getPengarang().split(" ");
-            int j = 0;
-            while (j != words.length){
-                if (!words[j].equals(penulis))
-                    arrBuku = i;
-                j = j + 1;  }
-        } return arrBuku;   }
+//    public int cariArrayBukuByPenulis(String penulis){
+//        Buku cari;
+//        int arrBuku = -1;
+//        for (int i = 0; i < listBuku.size(); i++){
+//            cari = (Buku) listBuku.get(i); //System.out.println(i);
+//            String words[] = cari.getPengarang().split(" ");
+//            int j = 0;
+//            while (j != words.length){
+//                if (!words[j].equals(penulis))
+//                    arrBuku = i;
+//                j = j + 1;  }
+//        } return arrBuku;   }
 
     //untuk mencari buku berdasarkan penulisnya
-    public void cariBukuByPenulis(String penulis){
+    public ArrayList cariBukuByPenulis(String penulis){
         Buku cari;
+        ArrayList arBuku = new ArrayList<Buku>();
         boolean stat = false;
         int arrBuku = -1;
         System.out.println("Hasil pencarian buku dengan nama penulis "+penulis);
@@ -117,19 +130,21 @@ public class Aplikasi {
             String words[] = cari.getPengarang().split(" ");
             int j = 0;
             while (j != words.length){
-//                System.out.println(words[j]);
                 if (words[j].equals(penulis)){
                     stat = true;
-                    cari.previewBuku();
+                    arBuku.add(cari);
+                    //cari.previewBuku();
                 } j = j+1;  }   }
         if (stat == false)
-            System.out.println("Buku tidak tersedia");    }
+            System.out.println("Buku tidak tersedia");
+        return arBuku;
+    }
         
     //untuk mencari status keberadaan data sebuah buku berdasarkan judul atau penulis buku
     public boolean cariBukuByJudulPenulis(String judulBuku, String penulis){
-        int ketemu = cariArrayBukuByJudul(judulBuku);
-        int found = cariArrayBukuByPenulis(penulis);
-        return ketemu > -1 || found > -1;    }
+        int ketemu = cariBukuByJudul(judulBuku).size();
+        int found = cariBukuByPenulis(penulis).size();
+        return ketemu > 0 || found > 0;    }
     
     //untuk mencari array dari data sebuah buku berdasarkan kode buku
     public int cariArrayBukuByKode(String kodeBuku){
@@ -147,18 +162,18 @@ public class Aplikasi {
         return ketemu != -1;    }
     
     //menu mencari buku
-    public void cariBuku(String judul, String penulis){
-        if (judul.equals("") && penulis.equals(""))
-            System.out.println("Harap isi salah satu kotak dialog");
-        else{
-            boolean stat = cariBukuByJudulPenulis(judul, penulis);
-            if (stat == false)
-                System.out.println("Buku tidak tersedia");
-            else{
-                if(!judul.equals(""))
-                    cariBukuByJudul(judul);
-                else
-                    cariBukuByPenulis(penulis); }   }   }
+    public ArrayList cariBuku(String cari, int dsrCari){
+        boolean stat = cariBukuByJudulPenulis(cari, cari);
+        ArrayList listBk = new ArrayList<Buku>();
+        if (stat == true){
+            if(dsrCari == 1)
+                listBk = cariBukuByJudul(cari);
+            else
+                listBk = cariBukuByPenulis(cari); }
+        else
+            System.out.println("Buku tidak tersedia");
+        return listBk;    }
+        
     //untuk mencari array dari data seorang anggota perpus berdasarkan kode anggota
     public int cariArrayAnggotaByKode(String kodeAnggota){
         Anggota cari;

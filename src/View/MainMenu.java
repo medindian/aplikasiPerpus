@@ -2,6 +2,7 @@
 package View;
 
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 import javax.swing.JOptionPane;
 
@@ -22,6 +23,7 @@ public class MainMenu extends javax.swing.JPanel implements View{
         btnTambahAnggota = new javax.swing.JButton();
         btnPeminjaman = new javax.swing.JButton();
         btnPengembalian = new javax.swing.JButton();
+        btnKembali = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Menu Utama");
@@ -42,6 +44,8 @@ public class MainMenu extends javax.swing.JPanel implements View{
         btnPengembalian.setText("Pengembalian Buku");
         btnPengembalian.setActionCommand("pengembalian");
 
+        btnKembali.setText("Kembali");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -57,7 +61,10 @@ public class MainMenu extends javax.swing.JPanel implements View{
                             .addComponent(btnPengadaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnPeminjaman, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnPengembalian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTambahAnggota))))
+                            .addComponent(btnTambahAnggota)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(btnKembali)))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -73,10 +80,13 @@ public class MainMenu extends javax.swing.JPanel implements View{
                 .addComponent(btnPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPengembalian)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(btnKembali)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnPeminjaman;
     private javax.swing.JButton btnPengadaan;
     private javax.swing.JButton btnPengembalian;
@@ -86,11 +96,15 @@ public class MainMenu extends javax.swing.JPanel implements View{
 
     @Override
     public void addListener(ActionListener e) {
+        btnKembali.addActionListener(e);
         btnPengadaan.addActionListener(e);
         btnTambahAnggota.addActionListener(e);
         btnPeminjaman.addActionListener(e);
         btnPengembalian.addActionListener(e);   }
 
+    public Object getBtnKembali() {
+        return btnKembali;    }
+    
     public Object getBtnPeminjaman() {
         return btnPeminjaman;   }
 

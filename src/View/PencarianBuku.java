@@ -26,8 +26,6 @@ public class PencarianBuku extends javax.swing.JPanel implements View{
 
         labelPencarianMenurut.setText("Pencarian Menurut :");
 
-        txtPencarian.setText("Pencarian Menurut...");
-
         btnCari.setText("Cari");
 
         labelDataBuku.setText("Data Buku :");
