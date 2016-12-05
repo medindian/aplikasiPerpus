@@ -1,5 +1,7 @@
 package database;
 
+import com.mysql.jdbc.Driver;
+import java.sql.SQLException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,7 +14,7 @@ import java.util.logging.Logger;
 
 public class Database {
 
-    private String url = "";//jdbc:mysql://localhost:3306/aplikasiperpustakaan";
+    private String url = "jdbc:mysql://localhost:3306/aplikasiperpustakaan";
     private String user = "root";
     private String passUser = "";
     private Statement st = null;
@@ -114,7 +116,7 @@ public class Database {
             while (ss.next()) {
                 Buku b = new Buku(rs.getString("judul"), rs.getString("namaPengarang"),
                         rs.getString("penerbit"), rs.getString("kodeBuku"), 
-                        rs.getString("sinopsis"), rs.getInt("tahunTerbit"), rs.getInt("jmlBuku") );
+                        rs.getString("sinopsis"), rs.getInt("thnTerbit"), rs.getInt("jmlBuku") );
                 daftarBuku.add(b);
             }
 //            System.out.println("data lowongan terbaca");

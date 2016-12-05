@@ -38,10 +38,10 @@ public class Aplikasi {
             
     //menu mendaftarkan anggota baru
     public String tambahAnggota(String nama, String alamat, String noTelp, String email){
-        this.kode = kode+1;
+        Aplikasi.kode = kode+1;
         int g = -2;
         Pendaftaran pdf = null;
-        pdf.daftarAnggotaBaru(nama, alamat, noTelp, email, this.kode);
+        pdf.daftarAnggotaBaru(nama, alamat, noTelp, email, Aplikasi.kode);
         this.listPendaftaran.add(pdf);
         db.savePendaftaran(pdf);
         if (listAnggota.isEmpty()){

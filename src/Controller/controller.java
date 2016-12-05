@@ -1,10 +1,11 @@
 package Controller;
 import java.awt.event.*;
-//import java.io.IOException;
-//import java.util.Date;
-//import javax.swing.JOptionPane;
+import java.io.IOException;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import Model.*;
 import View.*;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JPanel;
 
@@ -100,7 +101,8 @@ public class controller extends MouseAdapter implements ActionListener{
                 currentView = "0";
                 view.getCardLayout().show(mainPanel, currentView);
             } else if (source.equals(cr.getBtnCari())){
-                model.getDB().readDataBuku();
+                ArrayList<Buku> readDataBuku;
+                readDataBuku = model.getDB().readDataBuku();
                 String txtCari = cr.getTxtPencarian();
                 int dsrCariBuku = cr.getDasarPencarian();
                 int list = model.cariBuku(txtCari, dsrCariBuku).size();
@@ -187,10 +189,10 @@ public class controller extends MouseAdapter implements ActionListener{
                 String pengarang = pbk.getTxtPengarang();
                 String penerbit = pbk.getTxtPenerbit();
                 int thnTerbit = Integer.parseInt(pbk.getTxtThnTerbit());
-//                String sinopsis = pbk.getTxtSinopsis();
+                String sinopsis = pbk.getTxtSinopsis();
                 int jmlBuku = pbk.getTxtJmlBuku();
-//                model.tambahBuku(judul, pengarang, penerbit, kdBuku, "", thnTerbit, jmlBuku);
-                pbk.setTxtSinopsis(model.tambahBuku(judul, pengarang, penerbit, kdBuku, "", thnTerbit, jmlBuku));
+                model.tambahBuku(judul, pengarang, penerbit, kdBuku, sinopsis, thnTerbit, jmlBuku);
+//                pbk.setTxtSinopsis(model.tambahBuku(judul, pengarang, penerbit, kdBuku, "", thnTerbit, jmlBuku));
                 int ar = model.cariArrayBukuByKode(kdBuku);
                 Buku bk = model.getListBuku().get(ar);
                 model.getDB().saveBuku(bk);
