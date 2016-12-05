@@ -17,18 +17,36 @@ public class Peminjaman {
     private Date tglPeminjaman, batasPinjam = null;
     private Pengembalian pengembalian;
 
-    Peminjaman(Buku bukuYgDipinjam, String kodePeminjaman, Date tglPinjam) {
+    Peminjaman(Buku bukuYgDipinjam, String kdPeminjam, Date tglPinjam) {
         this.buku = bukuYgDipinjam;
-        this.kodePeminjaman = kodePeminjaman;
+        this.kodePeminjaman = kdPeminjam;// + Integer.toString(n);
         this.tglPeminjaman = tglPinjam;
         this.batasPinjam = hitungBatasPeminjaman();
         this.pengembalian = new Pengembalian();
     }
     
+    public Peminjaman(Buku bukuYgDipinjam, String kdPeminjam, Date tglPinjam, Date tglDeadline) {
+        this.buku = bukuYgDipinjam;
+        this.kodePeminjaman = kdPeminjam;// + Integer.toString(n);
+        this.tglPeminjaman = tglPinjam;
+        this.batasPinjam = tglDeadline;
+        this.pengembalian = new Pengembalian();
+    }
+
+    public Buku getBuku() {
+        return buku;    }
+
+    public void setBuku(Buku buku) {
+        this.buku = buku;    }
+    
+//    public void setKodePeminjaman(String kdAnggota){
+//        SimpleDateFormat newFormat = new SimpleDateFormat("ddMMyy");
+//        String kd1 = newFormat.format(this.tglPeminjaman) + kdAnggota + int n;
+//        System.out.println(kd1);    
+//    }
+    
     public boolean sudahMengembalikanBuku(){
-        if (pengembalian.getTglPengembalian() == null)
-            return false;
-        return true;
+        return pengembalian.getTglPengembalian() != null;
     }
     
     public int banyakHariDalamSebulan(int iYear, int iMonth){
@@ -67,8 +85,7 @@ public class Peminjaman {
     
     public String convertDateToString(Date tglBaru){
         SimpleDateFormat newFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String newDate = "";
-        newDate = newFormat.format(tglBaru);
+        String newDate = newFormat.format(tglBaru);
         return newDate; }
     
     public void viewTglPinjam(){

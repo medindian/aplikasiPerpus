@@ -6,6 +6,7 @@ import java.util.Date;
 public class Anggota {
     
     private String nama, alamat, noTelp, email, kodeAnggota;
+//    private int maxPinjam = 2;
     private ArrayList<Peminjaman> listPeminjaman;
 
     public Anggota(String nama, String alamat, String noTelp, String email, int kode) {
@@ -15,6 +16,15 @@ public class Anggota {
         this.email = email;
         this.listPeminjaman = new ArrayList<>();
         setKodeAnggota(kode);
+    }
+    
+    public Anggota(String nama, String alamat, String noTelp, String email, String kodeAnggota) {
+        this.nama = nama;
+        this.alamat = alamat;
+        this.noTelp = noTelp;
+        this.email = email;
+        this.listPeminjaman = new ArrayList<>();
+        this.kodeAnggota = kodeAnggota;
     }
     
     public String getKodeAnggota() {
@@ -68,9 +78,19 @@ public class Anggota {
     }
     
     public void melakukanPeminjamanBuku(Peminjaman pinjam){
-        this.listPeminjaman.add(pinjam);
+//        if (checkMaxPinjam() == true){
+            this.listPeminjaman.add(pinjam);
+//            this.maxPinjam = maxPinjam - 1;
+//        } else
+//            System.out.println("Anda sudah meminjam 2 buku. silahkan lakukan "
+//                    + "pengembalian terlebih dahulu");        
 //        System.out.println("Dokumentasi peminjaman berhasil disimpan");
     }
+    
+//    public boolean checkMaxPinjam(){
+//        if (this.maxPinjam != 0)
+//            return true;
+//        return false;    }
     
     public int cariPeminjaman(String kodePeminjaman){
         int arrKetemu = -1;

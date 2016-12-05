@@ -53,7 +53,7 @@ public class HalamanAwal extends javax.swing.JPanel implements View{
                 .addComponent(btnCariBuku)
                 .addGap(28, 28, 28)
                 .addComponent(btnAksesAdmin)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

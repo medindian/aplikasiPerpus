@@ -7,7 +7,8 @@ public class Buku {
     private String judul, pengarang, penerbit, sinopsis, kodeBuku, thnTerbit;
     private int jumlahBuku;
     
-    Buku(String judul, String pengarang, String penerbit, String kodeBuku, String sinopsis, int tahunTerbit, int jmlBuku) {
+    public Buku(String judul, String pengarang, String penerbit, String kodeBuku, String sinopsis,
+            int tahunTerbit, int jmlBuku){
         this.judul = judul;
         this.pengarang = pengarang;
         this.penerbit = penerbit;

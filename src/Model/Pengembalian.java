@@ -11,9 +11,13 @@ public class Pengembalian {
 
     public Pengembalian() {
         this.tglPengembalian = null;
-        //indikator peminjaman dilihat dari batas deadline
         this.banyakHariPinjam = 0;
         this.denda = new Denda();
+    }
+    
+    public Pengembalian(Date tglBalik, long banyakHari){
+        this.tglPengembalian = tglBalik;
+        this.banyakHariPinjam = banyakHari;
     }
     
     public Date getTglPengembalian() {

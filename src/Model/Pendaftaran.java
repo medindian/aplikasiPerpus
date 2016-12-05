@@ -7,27 +7,33 @@ import java.util.Date;
 //satu obj pendaftaran untuk 1 hari saja
 public class Pendaftaran{
     
-    private ArrayList anggota = new ArrayList<Anggota>();
-    private String tglDaftar;
+    private Anggota anggota;
+    private Date tglDaftar;
     
     public void daftarAnggotaBaru(String nama, String alamat, String noTelp, String email, int kode){
-        anggota.add(new Anggota(nama, alamat, noTelp, email, kode));
-        this.tglDaftar = new Date().toString();
+        this.anggota = new Anggota(nama, alamat, noTelp, email, kode);
+        this.tglDaftar = new Date();
     }
 
-    public ArrayList getAnggota() {
+    public void setAnggota(Anggota anggota) {
+        this.anggota = anggota; }
+
+    public void setTglDaftar(Date tglDaftar) {
+        this.tglDaftar = tglDaftar; }
+    
+    public Anggota getAnggota() {
         return anggota; }
         
-    public Anggota cariAnggotaByNama(String nama){
-        Anggota a;
-        for (int i = 0; i < anggota.size(); i++){
-            a = (Anggota) anggota.get(i);
-            if (a.getNama().equals(nama))
-                return a;
-        }
-        return null;
-    }
+//    public Anggota cariAnggotaByNama(String nama){
+//        Anggota a;
+//        for (int i = 0; i < anggota.size(); i++){
+//            a = (Anggota) anggota.get(i);
+//            if (a.getNama().equals(nama))
+//                return a;
+//        }
+//        return null;
+//    }
         
-    public String getTglDaftar() { return tglDaftar; }
+    public Date getTglDaftar() { return tglDaftar; }
         
 }

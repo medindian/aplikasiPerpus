@@ -31,7 +31,7 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
         txtSinopsis = new javax.swing.JTextArea();
         txtJudul = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtAddBuku = new javax.swing.JButton();
+        btnAddBuku = new javax.swing.JButton();
         txtPengarang = new javax.swing.JTextField();
         txtPenerbit = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -39,6 +39,12 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
         btnKembali.setText("Back");
 
         jLabel4.setText("Kode Buku :");
+
+        txtThnTerbit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtThnTerbitKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Tahun Terbit :");
 
@@ -55,8 +61,8 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Mendaftarkan Anggota Baru");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Mendaftarkan Buku Baru");
 
         jLabel7.setText("Sinopsis :");
 
@@ -68,7 +74,7 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
 
         jLabel3.setText("Pengarang :");
 
-        txtAddBuku.setText("Tambah");
+        btnAddBuku.setText("Tambah");
 
         txtPengarang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -85,46 +91,50 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtAddBuku))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel6)
+                        .addComponent(txtJudul)
+                        .addComponent(txtPengarang)
+                        .addComponent(txtKdBuku)
+                        .addComponent(txtJmlBuku, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+                    .addComponent(txtThnTerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel6)
-                                .addComponent(txtJudul)
-                                .addComponent(txtPengarang)
-                                .addComponent(txtKdBuku)
-                                .addComponent(txtJmlBuku, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
-                            .addComponent(txtThnTerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(txtPenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                .addGap(93, 93, 93)
+                                .addComponent(btnAddBuku)))
+                        .addGap(0, 45, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addComponent(txtPenerbit))
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
-                .addGap(177, 177, 177)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
@@ -153,11 +163,12 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtJmlBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAddBuku)
-                    .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtJmlBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddBuku))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -181,8 +192,15 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
         }
     }//GEN-LAST:event_txtPengarangKeyTyped
 
-
+    private void txtThnTerbitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtThnTerbitKeyTyped
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE)) {
+            JOptionPane.showMessageDialog(null,"Hanya untuk inputan Angka saja !");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtThnTerbitKeyTyped
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddBuku;
     private javax.swing.JButton btnKembali;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -193,7 +211,6 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton txtAddBuku;
     private javax.swing.JTextField txtJmlBuku;
     private javax.swing.JTextField txtJudul;
     private javax.swing.JTextField txtKdBuku;
@@ -204,7 +221,7 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
     // End of variables declaration//GEN-END:variables
 
     public Object getBtnTambah(){
-        return txtAddBuku;  }
+        return btnAddBuku;  }
     
     public Object getBtnBack(){
         return btnKembali;    }
@@ -212,10 +229,10 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
     public String getTxtJudul() {
         return txtJudul.getText(); }
     
-    public short getTxtJmlBuku() {
-        short i ;
+    public int getTxtJmlBuku() {
+        int i ;
         if(txtJmlBuku.getText() != ""){
-            i = Short.parseShort(txtJmlBuku.getText());
+            i = Integer.parseInt(txtJmlBuku.getText());
         } else { i = 0;}
         return i;   }
     
@@ -223,7 +240,10 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
         return txtPengarang.getText(); }
     
     public String getTxtThnTerbit() {
-        return txtThnTerbit.getText();   }
+        String a = "";
+        if (txtJmlBuku.getText().length() <= 4)
+            a = txtThnTerbit.getText();
+        return a;   }
     
     public String getTxtKdBuku() {
         return txtKdBuku.getText();  }
@@ -231,12 +251,26 @@ public class PengadaanBuku extends javax.swing.JPanel implements View{
     public String getTxtSinopsis() {
         return txtSinopsis.getText();    }
 
+    public void setTxtSinopsis(String txtSinopsis) {
+        this.txtSinopsis.setText(txtSinopsis);
+    }
+
     public String getTxtPenerbit() {
         return txtPenerbit.getText();    }
+    
+    public void setEmpty(){
+        txtJudul.setText("");
+        txtKdBuku.setText("");
+        txtPenerbit.setText("");
+        txtSinopsis.setText("");
+        txtThnTerbit.setText("");
+        txtJmlBuku.setText("");
+        txtPengarang.setText("");
+    }
         
     @Override
     public void addListener(ActionListener e) {
-        txtAddBuku.addActionListener(e);
+        btnAddBuku.addActionListener(e);
         btnKembali.addActionListener(e);  }
     
     @Override

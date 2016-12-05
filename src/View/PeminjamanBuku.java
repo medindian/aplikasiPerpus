@@ -108,13 +108,13 @@ public class PeminjamanBuku extends javax.swing.JPanel implements View{
     private javax.swing.JTextField txtKdBuku;
     // End of variables declaration//GEN-END:variables
 
-    public String getTFieldKodeAnggota(){
+    public String getTxtKodeAnggota(){
         return txtKdAnggota.getText(); }
 
-    public String getTFieldKodeBuku(){
+    public String getTxtKodeBuku(){
         return txtKdBuku.getText();    }
     
-    public Object getButtonTambah(){
+    public Object getBtnTambah(){
         return btnSimpanPeminjaman;    }
 
     public Object getBtnKembali() {
@@ -122,7 +122,8 @@ public class PeminjamanBuku extends javax.swing.JPanel implements View{
     
     @Override
     public void addListener(ActionListener e){
-        btnSimpanPeminjaman.addActionListener(e);    }
+        btnSimpanPeminjaman.addActionListener(e);
+        btnKembali.addActionListener(e);    }
 
     @Override
     public void viewErrorMsg(String errorMsg) {

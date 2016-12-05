@@ -33,7 +33,7 @@ public class CariBuku extends javax.swing.JPanel {
         txtDtBuku.setRows(5);
         jScrollPane1.setViewportView(txtDtBuku);
 
-        dasarPencarian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dasarPencarian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Judul", "Penulis" }));
 
         judul.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         judul.setText("Pencarian Buku");
@@ -105,7 +105,7 @@ public class CariBuku extends javax.swing.JPanel {
         return btnKembali;  }
 
     public int getDasarPencarian() {
-        return dasarPencarian.getSelectedIndex()+1;   }
+        return dasarPencarian.getSelectedIndex();   }
 
     public void setTxtDtBuku(String dataBuku) {
         this.txtDtBuku.setText(dataBuku);    }

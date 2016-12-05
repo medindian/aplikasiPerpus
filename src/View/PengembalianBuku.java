@@ -25,6 +25,9 @@ public class PengembalianBuku extends javax.swing.JPanel implements View {
         txtHasilSimpan = new javax.swing.JTextArea();
         labelPengembalian = new javax.swing.JLabel();
         btnKembali = new javax.swing.JButton();
+        txtDendaDibayar = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        btnBayarDenda = new javax.swing.JButton();
 
         labelKodeAnggota.setText("Kode Anggota :");
 
@@ -43,33 +46,52 @@ public class PengembalianBuku extends javax.swing.JPanel implements View {
 
         btnKembali.setText("Kembali");
 
+        txtDendaDibayar.setText("Rp ");
+
+        jLabel1.setText("Denda :");
+
+        btnBayarDenda.setText("Bayar Denda");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnSimpanPengembalian)
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnKembali)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnBayarDenda))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelKodeAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtKdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelKodeBuku)
-                                        .addComponent(txtKdPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(labelDataPeminjaman)
-                            .addComponent(btnKembali))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(btnSimpanPengembalian)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(labelKodeAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtKdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(labelKodeBuku)
+                                                    .addComponent(txtKdPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(labelDataPeminjaman))
+                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(labelPengembalian)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtDendaDibayar)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(labelPengembalian)
+                .addContainerGap()
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -90,20 +112,29 @@ public class PengembalianBuku extends javax.swing.JPanel implements View {
                 .addGap(1, 1, 1)
                 .addComponent(labelDataPeminjaman)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addGap(2, 2, 2)
+                .addComponent(txtDendaDibayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBayarDenda)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(btnKembali)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBayarDenda;
     private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnSimpanPengembalian;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelDataPeminjaman;
     private javax.swing.JLabel labelKodeAnggota;
     private javax.swing.JLabel labelKodeBuku;
     private javax.swing.JLabel labelPengembalian;
+    private javax.swing.JTextField txtDendaDibayar;
     private javax.swing.JTextArea txtHasilSimpan;
     private javax.swing.JTextField txtKdAnggota;
     private javax.swing.JTextField txtKdPeminjaman;
@@ -114,6 +145,12 @@ public class PengembalianBuku extends javax.swing.JPanel implements View {
 
     public Object getBtnSimpanPengembalian() {
         return btnSimpanPengembalian;    }
+
+    public Object getBtnBayarDenda() {
+        return btnBayarDenda;    }
+
+    public String getTxtDendaDibayar() {
+        return txtDendaDibayar.getText();    }
 
     public String getTxtKdAnggota() {
         return txtKdAnggota.getText();    }
@@ -126,7 +163,9 @@ public class PengembalianBuku extends javax.swing.JPanel implements View {
 
     @Override
     public void addListener(ActionListener e){
-        btnSimpanPengembalian.addActionListener(e);    }
+        btnSimpanPengembalian.addActionListener(e);
+        btnBayarDenda.addActionListener(e);
+        btnKembali.addActionListener(e);    }
 
     @Override
     public void viewErrorMsg(String errorMsg) {

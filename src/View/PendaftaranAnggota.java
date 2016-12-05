@@ -1,11 +1,10 @@
 package View;
 
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class PendaftaranAnggota extends javax.swing.JFrame implements View{
+public class PendaftaranAnggota extends javax.swing.JPanel implements View{
 
     public PendaftaranAnggota() {
         initComponents();
@@ -15,6 +14,10 @@ public class PendaftaranAnggota extends javax.swing.JFrame implements View{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtNoTelp = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtNoAnggota = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
@@ -24,12 +27,12 @@ public class PendaftaranAnggota extends javax.swing.JFrame implements View{
         btnKembali = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtAlamat = new javax.swing.JTextField();
-        txtNoTelp = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtNoAnggota = new javax.swing.JTextField();
+        txtStatus = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("No. Anggota     :");
+
+        txtNoAnggota.setText("tidak perlu diisi");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Formulir Anggota Baru");
@@ -50,11 +53,10 @@ public class PendaftaranAnggota extends javax.swing.JFrame implements View{
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("No. Telepon      :");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("No. Anggota     :");
+        txtStatus.setText("status pendaftaran");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -74,7 +76,10 @@ public class PendaftaranAnggota extends javax.swing.JFrame implements View{
                                     .addComponent(txtAlamat)
                                     .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(btnTambahAnggota, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -87,7 +92,7 @@ public class PendaftaranAnggota extends javax.swing.JFrame implements View{
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtNoTelp, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                                     .addComponent(txtEmail))))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,52 +121,13 @@ public class PendaftaranAnggota extends javax.swing.JFrame implements View{
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(btnTambahAnggota)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(btnKembali)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnKembali)
+                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PendaftaranAnggota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PendaftaranAnggota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PendaftaranAnggota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PendaftaranAnggota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PendaftaranAnggota().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnTambahAnggota;
@@ -176,7 +142,11 @@ public class PendaftaranAnggota extends javax.swing.JFrame implements View{
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNoAnggota;
     private javax.swing.JTextField txtNoTelp;
+    private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
+
+    
+    
     public Object getBtnTambah(){
         return btnTambahAnggota;    }
     
@@ -197,6 +167,10 @@ public class PendaftaranAnggota extends javax.swing.JFrame implements View{
 
     public String getTxtNoTelp() {
         return txtNoTelp.toString();    }
+
+    public void setTxtStatus(String txtStatus) {
+        this.txtStatus.setText(txtStatus);
+    }
     
     @Override
     public void addListener(ActionListener e) {
@@ -207,4 +181,5 @@ public class PendaftaranAnggota extends javax.swing.JFrame implements View{
     public void viewErrorMsg(String errorMsg) {
         JOptionPane.showMessageDialog(this, errorMsg);
     }
+
 }
