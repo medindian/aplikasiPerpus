@@ -28,22 +28,23 @@ public class MainMenu extends javax.swing.JPanel implements View{
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Menu Utama");
 
-        btnPengadaan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnPengadaan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPengadaan.setText("Pengadaan Buku");
         btnPengadaan.setActionCommand("daftarBuku");
 
-        btnTambahAnggota.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnTambahAnggota.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnTambahAnggota.setText("Pendaftaran Anggota");
         btnTambahAnggota.setActionCommand("daftarAnggota");
 
-        btnPeminjaman.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnPeminjaman.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPeminjaman.setText("Peminjaman Buku");
         btnPeminjaman.setActionCommand("peminjaman");
 
-        btnPengembalian.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnPengembalian.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPengembalian.setText("Pengembalian Buku");
         btnPengembalian.setActionCommand("pengembalian");
 
+        btnKembali.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnKembali.setText("Kembali");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -53,34 +54,35 @@ public class MainMenu extends javax.swing.JPanel implements View{
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnPengadaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPeminjaman, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPengembalian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTambahAnggota)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(btnKembali)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                        .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(jLabel1)))
+                .addContainerGap(221, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPengadaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTambahAnggota, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                    .addComponent(btnPeminjaman, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPengembalian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(37, 37, 37)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPengadaan, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(30, 30, 30)
+                .addComponent(btnPengadaan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnTambahAnggota)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addComponent(btnPengembalian)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addComponent(btnKembali)
                 .addContainerGap())
         );

@@ -116,7 +116,8 @@ public class Database {
             while (ss.next()) {
                 Buku b = new Buku(rs.getString("judul"), rs.getString("namaPengarang"),
                         rs.getString("penerbit"), rs.getString("kodeBuku"), 
-                        rs.getString("sinopsis"), rs.getInt("thnTerbit"), rs.getInt("jmlBuku") );
+                        //rs.getString("sinopsis"), 
+                        rs.getInt("thnTerbit"), rs.getInt("jmlBuku") );
                 daftarBuku.add(b);
             }
 //            System.out.println("data lowongan terbaca");
@@ -213,7 +214,7 @@ public class Database {
             + "'" + b.getPengarang() + "',"
             + "'" + b.getPenerbit() + "',"
             + "'" + b.getThnTerbit() + "',"
-            + "'" + b.getSinopsis() + "',"
+//            + "'" + b.getSinopsis() + "',"
             + "'" + b.getJumlahBuku() + "')";
         try {
             query(state);

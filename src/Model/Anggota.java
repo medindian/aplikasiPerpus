@@ -9,6 +9,22 @@ public class Anggota {
 //    private int maxPinjam = 2;
     private ArrayList<Peminjaman> listPeminjaman;
 
+    Anggota(int kode) {
+        setKodeAnggota(kode);
+        this.nama = "";
+        this.alamat = "";
+        this.noTelp = "";
+        this.email = "";
+        this.listPeminjaman = new ArrayList<>();
+    }
+    
+    public void lengkapiBioAnggota(String nama, String alamat, String noTelp, String email){
+        setNama(nama);
+        setAlamat(alamat);
+        setNoTelp(noTelp);
+        setEmail(email);
+    }
+    
     public Anggota(String nama, String alamat, String noTelp, String email, int kode) {
         this.nama = nama;
         this.alamat = alamat;

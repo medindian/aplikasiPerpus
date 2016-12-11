@@ -38,13 +38,7 @@ public class Peminjaman {
 
     public void setBuku(Buku buku) {
         this.buku = buku;    }
-    
-//    public void setKodePeminjaman(String kdAnggota){
-//        SimpleDateFormat newFormat = new SimpleDateFormat("ddMMyy");
-//        String kd1 = newFormat.format(this.tglPeminjaman) + kdAnggota + int n;
-//        System.out.println(kd1);    
-//    }
-    
+        
     public boolean sudahMengembalikanBuku(){
         return pengembalian.getTglPengembalian() != null;
     }

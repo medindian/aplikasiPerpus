@@ -2,12 +2,17 @@ package Model;
 
 //import java.text.*;
 import database.Database;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Aplikasi {
     
     private ArrayList<Pendaftaran> listPendaftaran;// = new Pendaftaran();
-    private static int kode = 0;
+    private static int kode = 1;
+    private static int kdBuku = 1;
+    private static int kdPinjam = 1;
+    private static int kdDenda = 1;
     private Database db;
     private ArrayList<Buku> listBuku;// = new ArrayList<Buku>();
     private ArrayList<Anggota> listAnggota;
@@ -15,8 +20,8 @@ public class Aplikasi {
     private String passAdmin = "123456";
 
     public Aplikasi() {
-        db = new Database();
-        db.connect();
+//        db = new Database();
+//        db.connect();
         System.out.println("Bisa connect");
 //        database = new FileIO();
         this.listPendaftaran = new ArrayList<>();
@@ -26,6 +31,36 @@ public class Aplikasi {
     
     public Database getDB(){
         return db;
+    }
+
+    public void setListPendaftaran(ArrayList<Pendaftaran> listPendaftaran) {
+        this.listPendaftaran = listPendaftaran;
+    }
+
+    public void setListBuku(ArrayList<Buku> listBuku) {
+        this.listBuku = listBuku;
+    }
+
+    public void setListAnggota(ArrayList<Anggota> listAnggota) {
+        this.listAnggota = listAnggota;
+    }
+    
+    public void listTahun() throws ParseException{
+	Date dt = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dt);
+        int year = cal.get(Calendar.YEAR);
+        ArrayList<Integer> daftarTahun = new ArrayList<>();
+//        System.out.println(year);
+        while (year >= 1850){
+            daftarTahun.add(year);
+//            System.out.println(year);
+            year = year -1;
+        }
+        for (int i = 0; i < daftarTahun.size(); i++){
+            System.out.println(daftarTahun.get(i));
+        }
+//        return daftarTahun;
     }
     
     //menu validasi admin untuk mengakses menu-menu utama aplikasi
@@ -96,8 +131,10 @@ public class Aplikasi {
     }
     
     //menu pengadaan buku
-    public String tambahBuku(String judul, String pengarang, String penerbit, String kodeBuku, String sinopsis, int tahunTerbit, int jmlBuku){
-        Buku bk = new Buku(judul, pengarang, penerbit, kodeBuku, sinopsis, tahunTerbit, jmlBuku);
+//    public String tambahBuku(String judul, String pengarang, String penerbit, String kodeBuku, String sinopsis, int tahunTerbit, int jmlBuku){
+    public String tambahBuku(String judul, String pengarang, String penerbit, String kodeBuku, int tahunTerbit, int jmlBuku){
+        Buku bk = new Buku(judul, pengarang, penerbit, kodeBuku, //sinopsis,
+                tahunTerbit, jmlBuku);
         listBuku.add(bk);
         boolean cari = cariBukuByJudulPenulis(judul, pengarang);
         if (cari == true){

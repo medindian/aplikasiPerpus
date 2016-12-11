@@ -66,6 +66,12 @@ public class controller extends MouseAdapter implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         Object source = ae.getSource();
         if (source.equals(view.getBtnExit())) {
+//            readDataAnggota();
+//            readDataPendaftaran();
+//            readDataBuku();
+//            readDataPeminjaman();
+//            readDataPengembalian();
+//            readDataDenda();
             System.exit(0);
         }
         if (currentView.equals("0")) {
@@ -101,12 +107,13 @@ public class controller extends MouseAdapter implements ActionListener{
                 currentView = "0";
                 view.getCardLayout().show(mainPanel, currentView);
             } else if (source.equals(cr.getBtnCari())){
+                model.setListBuku(model.getDB().readDataBuku());
                 ArrayList<Buku> readDataBuku;
                 readDataBuku = model.getDB().readDataBuku();
                 String txtCari = cr.getTxtPencarian();
                 int dsrCariBuku = cr.getDasarPencarian();
                 int list = model.cariBuku(txtCari, dsrCariBuku).size();
-                cr.setTxtDtBuku(model.viewSemuaListBuku());
+//                cr.setTxtDtBuku(model.viewSemuaListBuku());
             }
         } else if (currentView.equals("3")) {
             //PendaftaranAnggota pa 3
@@ -114,27 +121,22 @@ public class controller extends MouseAdapter implements ActionListener{
                 currentView = "1";
                 view.getCardLayout().show(mainPanel, currentView);
             }else if (source.equals(pa.getBtnTambah())){
-                model.getDB().readPendaftaran();
+//                model.setListAnggota(model.getDB().readDataAnggota());
+//                model.getDB().readPendaftaran();
                 String nama = pa.getTxtNama();
                 String alamat = pa.getTxtAlamat();
                 String noTelp = pa.getTxtNoTelp();
                 String email = pa.getTxtEmail();
                 
-                pa.setTxtStatus(model.tambahAnggota(nama, alamat, noTelp, email));
+//                pa.setTxtStatus(model.tambahAnggota(nama, alamat, noTelp, email));
                 int arAg = model.cariAnggota(nama, alamat, noTelp, email);
                 pa.setTxtNoAnggota(model.getListAnggota().get(arAg).getKodeAnggota());
                 
                 int arP = model.cariAnggotaDiPendaftaran(nama, alamat, noTelp, email);
                 Pendaftaran pp = model.getListPendaftaran().get(arP);
                 
-                model.getDB().savePendaftaran(pp);
-                model.getDB().saveAnggota(model.getListAnggota().get(arAg));
-                
-                nama = "";
-                alamat = "";
-                noTelp = "";
-                email = "";
-                pa.setTxtNoAnggota("tidak perlu diisi");
+//                model.getDB().savePendaftaran(pp);
+//                model.getDB().saveAnggota(model.getListAnggota().get(arAg));                
             }
         } else if (currentView.equals("4")) {
             //PeminjamanBuku pj 4
@@ -142,7 +144,7 @@ public class controller extends MouseAdapter implements ActionListener{
                 currentView = "1";
                 view.getCardLayout().show(mainPanel, currentView);
             } else if(source.equals(pj.getBtnTambah())){
-                model.getDB().readDataPeminjaman();
+//                model.getDB().readDataPeminjaman();
                 String kdAnggota = pj.getTxtKodeAnggota();
                 String kdBuku = pj.getTxtKodeBuku();
                 Date dt = new Date();
@@ -151,7 +153,7 @@ public class controller extends MouseAdapter implements ActionListener{
                 int ar = model.cariArrayAnggotaByKode(kdAnggota);
                 int dtPinjam = model.getListAnggota().get(ar).cariPeminjaman(kdPeminjaman);
                 Peminjaman p = (Peminjaman) model.getListAnggota().get(ar).getListPeminjaman().get(dtPinjam);
-                model.getDB().savePeminjaman(p);
+//                model.getDB().savePeminjaman(p);
             }
         } else if (currentView.equals("5")) {
             //PengembalianBuku pg 5
@@ -162,7 +164,7 @@ public class controller extends MouseAdapter implements ActionListener{
                 currentView = "1";
                 view.getCardLayout().show(mainPanel, currentView);
             } else if (source.equals(pg.getBtnSimpanPengembalian())){
-                model.getDB().readDataPengembalian();
+//                model.getDB().readDataPengembalian();
                 String kdAnggota = pg.getTxtKdAnggota();
                 String kdPinjam = pg.getTxtKdPeminjaman();
                 System.out.println(model.PengembalianBuku(kdAnggota, kdPinjam));
@@ -183,19 +185,19 @@ public class controller extends MouseAdapter implements ActionListener{
                 currentView = "1";
                 view.getCardLayout().show(mainPanel, currentView);
             } else if (source.equals(pbk.getBtnTambah())){
-                //model.getDB().readDataBuku();
+//                model.setListBuku(model.getDB().readDataBuku());
                 String kdBuku = pbk.getTxtKdBuku();
                 String judul = pbk.getTxtJudul();
                 String pengarang = pbk.getTxtPengarang();
                 String penerbit = pbk.getTxtPenerbit();
-                int thnTerbit = Integer.parseInt(pbk.getTxtThnTerbit());
-                String sinopsis = pbk.getTxtSinopsis();
+//                int thnTerbit = Integer.parseInt(pbk.getTxtThnTerbit());
+//                String sinopsis = pbk.getTxtSinopsis();
                 int jmlBuku = pbk.getTxtJmlBuku();
-                model.tambahBuku(judul, pengarang, penerbit, kdBuku, sinopsis, thnTerbit, jmlBuku);
+//                model.tambahBuku(judul, pengarang, penerbit, kdBuku, sinopsis, thnTerbit, jmlBuku);
 //                pbk.setTxtSinopsis(model.tambahBuku(judul, pengarang, penerbit, kdBuku, "", thnTerbit, jmlBuku));
                 int ar = model.cariArrayBukuByKode(kdBuku);
                 Buku bk = model.getListBuku().get(ar);
-                model.getDB().saveBuku(bk);
+//                model.getDB().saveBuku(bk);
                 pbk.setEmpty();
             }
         }
