@@ -25,6 +25,8 @@ public class MainMenu extends javax.swing.JPanel implements View{
         btnPengembalian = new javax.swing.JButton();
         btnKembali = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(600, 434));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Menu Utama");
 

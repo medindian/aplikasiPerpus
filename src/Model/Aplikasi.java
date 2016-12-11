@@ -45,23 +45,23 @@ public class Aplikasi {
         this.listAnggota = listAnggota;
     }
     
-    public void listTahun() throws ParseException{
-	Date dt = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(dt);
-        int year = cal.get(Calendar.YEAR);
-        ArrayList<Integer> daftarTahun = new ArrayList<>();
-//        System.out.println(year);
-        while (year >= 1850){
-            daftarTahun.add(year);
-//            System.out.println(year);
-            year = year -1;
-        }
-        for (int i = 0; i < daftarTahun.size(); i++){
-            System.out.println(daftarTahun.get(i));
-        }
-//        return daftarTahun;
-    }
+//    public void listTahun() throws ParseException{
+//	Date dt = new Date();
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(dt);
+//        int year = cal.get(Calendar.YEAR);
+//        ArrayList<Integer> daftarTahun = new ArrayList<>();
+////        System.out.println(year);
+//        while (year >= 1850){
+//            daftarTahun.add(year);
+////            System.out.println(year);
+//            year = year -1;
+//        }
+//        for (int i = 0; i < daftarTahun.size(); i++){
+//            System.out.println(daftarTahun.get(i));
+//        }
+////        return daftarTahun;
+//    }
     
     //menu validasi admin untuk mengakses menu-menu utama aplikasi
 //    public void validasiAdmin(String pass){
